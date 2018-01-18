@@ -10,8 +10,8 @@
 
 .App-header {
   background-color: #222;
-  height: 150px;
-  padding: 20px;
+  height: 75px;
+  padding-top: 10px;
   color: white;
 }
 
@@ -145,14 +145,9 @@
    .sidenav {
      background-color: #fff;
      height: auto;
+     margin-top: 10px;
    }
 
-   /* Set black background color, white text and some padding */
-   footer {
-     background-color: #555;
-     color: white;
-     padding: 15px;
-   }
 
    /* On small screens, set height to 'auto' for sidenav and grid */
    @media screen and (max-width: 767px) {

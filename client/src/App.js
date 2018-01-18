@@ -7,6 +7,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+      <header className="App-header">
+        <h1 className="App-title">Readble</h1>
+      </header>
         <div className="container-fluid">
           <div className="row content">
             <Categories/>
