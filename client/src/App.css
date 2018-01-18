@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: #f1f1f1;
 }
 
 .App-logo {
@@ -26,3 +27,141 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+ .container-fluid {
+   width: 80%;
+ }
+
+ .list-item-box {
+ background-color: #fff;
+   padding: 10px;
+   margin-bottom: 10px;
+   position: relative;
+ }
+
+ .list-item-body-box {
+   padding-left: 10px;
+ }
+
+ .fixedContainer {
+     position: absolute;
+   bottom: 10px;
+   right: 10px;
+ }
+
+ .list-item-body-summary {
+   font-weight: bold;
+   font-size: 1.150em;
+   line-height: 1.35em;
+   display: block;
+ }
+
+ .list-item-body-author {
+   margin-top: 5px;
+ }
+
+ .list-item-body-author-text {
+   font-weight: bold;
+   font-size: 0.95em;
+ }
+
+ .list-item-vote-box {
+   float: left;
+   background-color: #f1f1f1;
+   margin-right: 10px;
+ }
+
+ .list-item-vote-count {
+   display: block;
+ }
+
+ .list-item-vote-answer {
+     font-size: 12px;
+   text-align: center;
+   clear: both;
+   float: left;
+   width: 100%;
+   height: auto;
+   margin: 6px 0 -4px;
+   word-break: break-word;
+   background-color: #fff;
+ }
+
+
+ .list-item-vote-arrows {
+     float: left;
+   height: 60px;
+   width: 20px;
+   position: relative;
+ }
+
+ .list-item-vote-arrows-up {
+   background-position: 0 0;
+   top: 10px;
+ }
+
+ .list-item-vote-arrows-down {
+   background-position: -16px 0;
+   bottom: 10px;
+ }
+
+ .list-item-vote-text {
+   display: block;
+   text-align: center;
+   width: 68px;
+   height: 60px;
+   line-height: 0.5;
+   float: left;
+ }
+
+ .list-item-vote-text-number {
+   font-size: 24px;
+   line-height: 40px;
+   display: block;
+   white-space: nowrap;
+ }
+
+ .list-item-vote-text-number-text {
+   font-size: 12px;
+ }
+
+ .list-item-vote-arrows-up, .list-item-vote-arrows-down {
+   text-indent: -9999px;
+   background-repeat: no-repeat;
+   width: 16px;
+   height: 10px;
+   border: none;
+   margin: 0;
+   padding: 0;
+   position: absolute;
+   left: 4px;
+   -webkit-transition: all 0s;
+   transition: all 0s;
+ }
+
+   /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+   .row.content {height: 1500px}
+
+   /* Set gray background color and 100% height */
+   .sidenav {
+     background-color: #f1f1f1;
+     height: 100%;
+   }
+
+   /* Set black background color, white text and some padding */
+   footer {
+     background-color: #555;
+     color: white;
+     padding: 15px;
+   }
+
+   /* On small screens, set height to 'auto' for sidenav and grid */
+   @media screen and (max-width: 767px) {
+     .sidenav {
+       height: auto;
+       padding: 15px;
+     }
+     .row.content {height: auto;}
+   .container-fluid {
+    width: 100%;
+   }
+   }
