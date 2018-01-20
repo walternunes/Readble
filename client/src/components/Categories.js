@@ -1,10 +1,15 @@
-import React from 'react';
 import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import { getCategories } from '../dispatches/CategoryDispatcher.js';
+import { connect } from 'react-redux';
 
-const Categories = (props) => {
-  Categories.propTypes = {
+class Categories extends Component { 
+
+  componentWillMount() {
+    this.props.getCategories();
   }
 
+  render() {
     return (
       <div className="col-sm-3 sidenav">
         <h4>Categories</h4>
@@ -16,6 +21,13 @@ const Categories = (props) => {
         </ul>
       </div>
     )
+  }
 }
 
-export default Categories
+function mapProps(state) {
+  return { categories: state.categories }
+}
+
+export default connect(mapProps, {
+  getCategories
+})(Categories);
