@@ -3,13 +3,15 @@ import React, { Component } from 'react';
 import { getCategories } from '../dispatches/CategoryDispatcher.js';
 import { connect } from 'react-redux';
 
-class Categories extends Component { 
+class Categories extends Component {
 
   componentWillMount() {
     this.props.getCategories();
   }
 
   render() {
+    const { categories, currentCategory } = this.props
+  console.log(categories)
     return (
       <div className="col-sm-3 sidenav">
         <h4>Categories</h4>
