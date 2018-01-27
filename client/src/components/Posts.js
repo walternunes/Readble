@@ -17,8 +17,8 @@ class Posts extends Component {
     return (
       <div className="col-sm-9">
 
-
-    	  <div className="row list-item-box">
+      {posts.length > 1 && posts.map((post, index) => (
+    	  <div className="row list-item-box" key={index}>
     			<div className="list-item-vote-box">
     				<div className="list-item-vote-count">
     					<div className="list-item-vote-arrows">
@@ -27,23 +27,23 @@ class Posts extends Component {
     					</div>
     					<div className="list-item-vote-text">
     						<span className="list-item-vote-text">
-    							<span className="list-item-vote-text-number">+2</span><span className="list-item-vote-text-number-text"> votes</span>
+    							<span className="list-item-vote-text-number">{post.voteScore}</span><span className="list-item-vote-text-number-text"> votes</span>
     						</span>
     					</div>
     				</div>
     				<div className="list-item-vote-answer">
-    					<h5><span className="label label-primary">Ipsum</span></h5>
-    					<span>48</span>
-    					<span>answers</span>
+    					<h5><span className="label label-primary">{post.category}</span></h5>
+    					<span>{post.commentCount}</span>
+    					<span> comments</span>
 
     				</div>
     			</div>
     			<div className="list-item-body-box">
     				<div className="list-item-body-summary">
-    					<a href=""><span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor </span></a>
+    					<a href=""><span>{post.title} </span></a>
     				</div>
     				<div className="list-item-body-author">
-    					<span className="glyphicon glyphicon-time"></span><span className="list-item-body-author-text"> Post by Jane Dane, Sep 27, 2015.</span>
+    					<span className="glyphicon glyphicon-time"></span><span className="list-item-body-author-text"> Post by {post.author}, Sep 27, 2015.</span>
     				</div>
 
     			</div>
@@ -51,6 +51,7 @@ class Posts extends Component {
     					<button type="submit" className="btn btn-success">Submit</button>
     				</div>
     	  </div>
+      ))}
     </div>
     )
   }
