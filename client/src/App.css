@@ -126,6 +126,7 @@
 
  .list-item-vote-arrows-up, .list-item-vote-arrows-down {
    text-indent: -9999px;
+   background: url('icons/vote-buttons.png');
    background-repeat: no-repeat;
    width: 16px;
    height: 10px;

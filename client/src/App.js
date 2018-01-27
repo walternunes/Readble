@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import Categories from './components/Categories.js'
+import Posts from './components/Posts.js'
 import './App.css';
 
 class App extends Component {
@@ -13,6 +14,7 @@ class App extends Component {
         <div className="container-fluid">
           <div className="row content">
             <Categories/>
+            <Posts/>
           </div>
         </div>
       </div>
