@@ -40,6 +40,8 @@
 
  .list-item-body-box {
    padding-left: 10px;
+   text-align: left;
+   margin-left: 20px;
  }
 
  .fixedContainer {
@@ -122,6 +124,11 @@
 
  .list-item-vote-text-number-text {
    font-size: 12px;
+ }
+
+ .row.list-item-box {
+   margin-left: 0px;
+   margin-top: 10px;
  }
 
  .list-item-vote-arrows-up, .list-item-vote-arrows-down {

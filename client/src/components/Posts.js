@@ -26,8 +26,8 @@ class Posts extends Component {
     			<div className="list-item-vote-box">
     				<div className="list-item-vote-count">
     					<div className="list-item-vote-arrows">
-    						<input title="Click to vote up" onclick="" type="submit" value="+" className="list-item-vote-arrows-up"/>
-    						<input title="Click to vote down" onclick="" type="submit" value="&ndash;" className="list-item-vote-arrows-down"/>
+    						<input title="Click to vote up"  type="submit" value="+" className="list-item-vote-arrows-up"/>
+    						<input title="Click to vote down"  type="submit" value="&ndash;" className="list-item-vote-arrows-down"/>
     					</div>
     					<div className="list-item-vote-text">
     						<span className="list-item-vote-text">
