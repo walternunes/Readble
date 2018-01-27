@@ -5,4 +5,4 @@ import PostReducer from './PostReducer';
 export default combineReducers({
     categories: CategoryReducer,
     posts: PostReducer
-});;
+});

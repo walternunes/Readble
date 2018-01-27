@@ -1,7 +1,6 @@
 import {
     GET_ALL_POSTS
 } from '../dispatches/CategoryDispatcher.js';
-import _ from 'lodash';
 const INITIAL_STATE = {};
 
 export default function (state = INITIAL_STATE, action) {

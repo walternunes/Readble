@@ -1,5 +1,4 @@
-import PropTypes from 'prop-types'
-import _ from 'lodash'
+//import PropTypes from 'prop-types'
 import React, { Component } from 'react';
 import { getPosts } from '../dispatches/CategoryDispatcher.js';
 import { connect } from 'react-redux';
@@ -9,17 +8,14 @@ class Posts extends Component {
       posts: [],
   }
   componentWillMount() {
-    console.log("init")
     this.props.getPosts();
-    console.log("end")
   }
 
   render() {
-    const { postss } = this.props
-    console.log("posts ->")
+    const { posts } = this.props
     console.log(this.props)
     return (
-      <div class="col-sm-9">
+      <div className="col-sm-9">
 
 
     	  <div className="row list-item-box">
@@ -44,7 +40,7 @@ class Posts extends Component {
     			</div>
     			<div className="list-item-body-box">
     				<div className="list-item-body-summary">
-    					<a href="#"><span title> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor </span></a>
+    					<a href=""><span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor </span></a>
     				</div>
     				<div className="list-item-body-author">
     					<span className="glyphicon glyphicon-time"></span><span className="list-item-body-author-text"> Post by Jane Dane, Sep 27, 2015.</span>

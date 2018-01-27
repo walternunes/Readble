@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types'
+//import PropTypes from 'prop-types'
 import React, { Component } from 'react';
-import { getCategories, getPosts } from '../dispatches/CategoryDispatcher.js';
+import { getCategories } from '../dispatches/CategoryDispatcher.js';
 import { connect } from 'react-redux';
 
 class Categories extends Component {
@@ -10,16 +10,13 @@ class Categories extends Component {
   }
 
   render() {
-    const { categories, currentCategory } = this.props
-  console.log("cat ->")
-  //console.log(currentCategory)
-  console.log(this.props)
+    const { categories } = this.props
     return (
       <div className="col-sm-3 sidenav">
         <h4>Categories</h4>
         <ul className="nav nav-pills nav-stacked">
           {categories.length > 1 && categories.map((category, index) => (
-              <li key={index}><a href="#">{category.name}</a>
+              <li key={index}><a href="">{category.name}</a>
               </li>
           ))}
         </ul>

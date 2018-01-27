@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import axios from 'axios';
 
 export const GET_CATEGORIES = 'get_categories';
