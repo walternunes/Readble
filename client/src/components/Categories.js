@@ -1,7 +1,8 @@
 //import PropTypes from 'prop-types'
 import React, { Component } from 'react';
-import { getCategories } from '../dispatches/CategoryDispatcher.js';
+import { getCategories, getPosts } from '../dispatches/CategoryDispatcher.js';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
 
 class Categories extends Component {
 
@@ -16,7 +17,10 @@ class Categories extends Component {
         <h4>Categories</h4>
         <ul className="nav nav-pills nav-stacked">
           {categories.length > 1 && categories.map((category, index) => (
-              <li key={index}><a href="">{category.name}</a>
+              <li key={index}>
+                  <Link to={category.path === 'all' ? '/' : `/${category.path}`} onClick={() => getPosts(category.path)}>
+                    {category.name}
+                  </Link>
               </li>
           ))}
         </ul>
@@ -24,11 +28,28 @@ class Categories extends Component {
     )
   }
 }
-
+/*
 function mapStateToProps (state) {
   return { categories: state.categories }
 }
 
 export default connect(mapStateToProps , {
-  getCategories
+  getCategories,
+  getPosts
 })(Categories);
+*/
+
+const mapStateToProps = (state) => {
+  return {
+    categories: state.categories
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+        getCategories: (category) => dispatch(getCategories()),
+        getPosts: (category) => dispatch(getPosts(category))
+  }
+}
+
+export default connect(mapStateToProps , mapDispatchToProps)(Categories);

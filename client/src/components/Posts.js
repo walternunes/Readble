@@ -8,16 +8,30 @@ class Posts extends Component {
       posts: [],
   }
   componentWillMount() {
-    this.props.getPosts();
+    if(this.props.match) {
+      if(this.props.match.params){
+        console.log("9999999999999")
+        console.log(this.props.match.params.category)
+      }
+    }
+    if(this.props.match && this.props.match.params){
+      console.log("9999999999999s")
+      this.props.getPosts(this.props.match.params.category);
+    } else {
+      console.log("9999999999999a")
+      this.props.getPosts('all');
+    }
   }
 
   render() {
     const { posts } = this.props
+    console.log("<><><><>")
     console.log(this.props)
+
     return (
       <div className="col-sm-9">
 
-      {posts.length > 1 && posts.map((post, index) => (
+      {posts.length > 0 && posts.map((post, index) => (
     	  <div className="row list-item-box" key={index}>
     			<div className="list-item-vote-box">
     				<div className="list-item-vote-count">
@@ -65,7 +79,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-        getPosts: (category) => dispatch(getPosts())
+        getPosts: (category) => dispatch(getPosts(category))
   }
 }
 

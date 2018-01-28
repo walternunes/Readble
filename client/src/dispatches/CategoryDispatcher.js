@@ -13,16 +13,22 @@ export function getCategories() {
     }
 }
 
-export function getPosts() {
-  return dispatch => {
-    axios.get(`http://localhost:3001/posts`)
-        .then(res => dispatch({ type: GET_ALL_POSTS, posts: res.data }))
-        .catch(error => console.log(error))
+export function getPosts(category) {
+  if (category === 'all') {
+    console.log("--->");
+    console.log(category);
+    return dispatch => {
+      axios.get(`http://localhost:3001/posts`)
+          .then(res => dispatch({ type: GET_ALL_POSTS, posts: res.data }))
+          .catch(error => console.log(error))
     }
-/*
-  return dispatch => {
-    axios.get(`${ROOT_URL}/${category}/posts`)
-        .then(res => dispatch({ type: FETCH_CATEGORY_POSTS, payload: res.data }))
-        .catch(err => console.log(err));
-    }*/
+  } else {
+    console.log("---<");
+    console.log(category);
+    return dispatch => {
+      axios.get(`http://localhost:3001/${category}/posts`)
+          .then(res => dispatch({ type: GET_ALL_POSTS, posts: res.data }))
+          .catch(error => console.log(error))
+    }
+  }
 }

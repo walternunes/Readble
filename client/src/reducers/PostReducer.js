@@ -4,9 +4,11 @@ import {
 const INITIAL_STATE = {};
 
 export default function (state = INITIAL_STATE, action) {
+  console.log("allposts")
+  console.log(action);
     switch (action.type) {
         case GET_ALL_POSTS:
-                console.log(action);
+
                 return action.posts
         default:
             return state;
