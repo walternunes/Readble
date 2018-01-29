@@ -11,7 +11,7 @@ class Categories extends Component {
   }
 
   render() {
-    const { categories } = this.props
+    const { categories, getPosts } = this.props
     return (
       <div className="col-sm-3 sidenav">
         <h4>Categories</h4>
@@ -28,16 +28,6 @@ class Categories extends Component {
     )
   }
 }
-/*
-function mapStateToProps (state) {
-  return { categories: state.categories }
-}
-
-export default connect(mapStateToProps , {
-  getCategories,
-  getPosts
-})(Categories);
-*/
 
 const mapStateToProps = (state) => {
   return {

@@ -8,7 +8,6 @@ export default function (state = INITIAL_STATE, action) {
   console.log(action);
     switch (action.type) {
         case GET_ALL_POSTS:
-
                 return action.posts
         default:
             return state;

@@ -4,7 +4,7 @@ import {
 const INITIAL_STATE = {};
 
 export default function (state = INITIAL_STATE, action) {
-  console.log(",.,,")
+  console.log("allcategories")
   console.log(action.type);
     switch (action.type) {
         case GET_CATEGORIES:
