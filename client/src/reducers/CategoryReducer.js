@@ -8,7 +8,6 @@ export default function (state = INITIAL_STATE, action) {
   console.log(action.type);
     switch (action.type) {
         case GET_CATEGORIES:
-        //console.log(action);
             return [{name: 'all', path:'all'}].concat(action.categories.categories)
         default:
             return state;

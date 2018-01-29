@@ -96,16 +96,6 @@
    position: relative;
  }
 
- .list-item-vote-arrows-up {
-   background-position: 0 0;
-   top: 10px;
- }
-
- .list-item-vote-arrows-down {
-   background-position: -16px 0;
-   bottom: 10px;
- }
-
  .list-item-vote-text {
    display: block;
    text-align: center;
@@ -145,6 +135,16 @@
    -webkit-transition: all 0s;
    transition: all 0s;
  }
+
+ .list-item-vote-arrows-up {
+  background-position: 0 0;
+  top: 10px;
+}
+
+.list-item-vote-arrows-down {
+  background-position: -16px 0;
+  bottom: 10px;
+}
 
    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
    .row.content {height: 1500px}
