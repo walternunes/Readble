@@ -1,8 +1,11 @@
 //import PropTypes from 'prop-types'
 import React, { Component } from 'react';
+import NewPost from './NewPost.js'
 import { getPosts, votePost } from '../dispatches/CategoryDispatcher.js';
 import { connect } from 'react-redux';
 import Timestamp from 'react-timestamp';
+import { Col, Row } from 'react-bootstrap'
+import Modal from 'react-modal'
 
 class Posts extends Component {
   state = {
@@ -20,12 +23,13 @@ class Posts extends Component {
 
   render() {
     const { posts, votePost } = this.props
-    
+
     return (
-      <div className="col-sm-9">
+      <Col sm={9}>
+        <NewPost/>
 
       {posts.length > 0 && posts.map((post, index) => (
-        <div className="row list-item-box" key={index}>
+        <Row className="list-item-box" key={index}>
           <div className="list-item-vote-box">
             <div className="list-item-vote-count">
               <div className="list-item-vote-arrows">
@@ -57,9 +61,9 @@ class Posts extends Component {
           <div className="fixedContainer">
               <button type="submit" className="btn btn-success">Submit</button>
             </div>
-        </div>
+        </Row>
       ))}
-    </div>
+    </Col>
     )
   }
 }

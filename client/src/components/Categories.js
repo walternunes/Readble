@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { getCategories, getPosts } from '../dispatches/CategoryDispatcher.js';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
+import { Col, Row, Grid, ListGroupItem, ListGroup } from 'react-bootstrap'
 
 class Categories extends Component {
 
@@ -13,18 +14,18 @@ class Categories extends Component {
   render() {
     const { categories, getPosts } = this.props
     return (
-      <div className="col-sm-3 sidenav">
+      <Col sm={3}>
         <h4>Categories</h4>
-        <ul className="nav nav-pills nav-stacked">
+        <ListGroup >
           {categories.length > 1 && categories.map((category, index) => (
-              <li key={index}>
+              <ListGroupItem key={index}>
                   <Link to={category.path === 'all' ? '/' : `/${category.path}`} onClick={() => getPosts(category.path)}>
                     {category.name}
                   </Link>
-              </li>
+              </ListGroupItem>
           ))}
-        </ul>
-      </div>
+        </ListGroup>
+      </Col>
     )
   }
 }

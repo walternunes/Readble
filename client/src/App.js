@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Categories from './components/Categories.js'
 import Posts from './components/Posts.js'
 import { Route, Switch, Link } from 'react-router-dom'
+import { Col, Row, Grid, ListGroupItem, ListGroup } from 'react-bootstrap'
 import './App.css';
 
 class App extends Component {
@@ -12,22 +13,20 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Readble</h1>
         </header>
-        <Route  path='/' render={(props) => (
-          <div className="container-fluid">
-            <div className="row content">
+        <Grid fluid={true}>
+        <Route exact path='/' render={(props) => (
+            <Row className="content">
               <Categories/>
               <Posts/>
-            </div>
-          </div>
+            </Row>
         )}/>
         <Route  path='/:category' render={(props) => (
-          <div className="container-fluid">
-            <div className="row content">
+            <Row className="content">
               <Categories/>
               <Posts {...props}/>
-            </div>
-          </div>
+            </Row>
           )}/>
+        </Grid>
         </div>
       );
   }
