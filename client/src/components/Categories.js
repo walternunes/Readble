@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { getCategories, getPosts } from '../dispatches/CategoryDispatcher.js';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
-import { Col, Row, Grid, ListGroupItem, ListGroup } from 'react-bootstrap'
+import { Col, ListGroupItem, ListGroup } from 'react-bootstrap'
 
 class Categories extends Component {
 

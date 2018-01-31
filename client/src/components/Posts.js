@@ -5,7 +5,6 @@ import { getPosts, votePost } from '../dispatches/CategoryDispatcher.js';
 import { connect } from 'react-redux';
 import Timestamp from 'react-timestamp';
 import { Col, Row } from 'react-bootstrap'
-import Modal from 'react-modal'
 
 class Posts extends Component {
   state = {

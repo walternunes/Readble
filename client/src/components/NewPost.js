@@ -1,7 +1,7 @@
 //import PropTypes from 'prop-types'
 import React, { Component } from 'react';
-import { getPosts } from '../dispatches/CategoryDispatcher.js';
-import { connect } from 'react-redux';
+//import { getPosts } from '../dispatches/CategoryDispatcher.js';
+//import { connect } from 'react-redux';
 import Modal from 'react-modal'
 
 const customStyleModal = {
@@ -43,7 +43,7 @@ closeNewPostModal = () => this.setState(() => ({ newPostModal: false }))
 
   render() {
     const { newPostModal } = this.state
-
+    Modal.setAppElement('body')
     return (
      <div>
         <Modal

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Categories from './components/Categories.js'
 import Posts from './components/Posts.js'
-import { Route, Switch, Link } from 'react-router-dom'
-import { Col, Row, Grid, ListGroupItem, ListGroup } from 'react-bootstrap'
+import { Route } from 'react-router-dom'
+import { Row, Grid } from 'react-bootstrap'
 import './App.css';
 
 class App extends Component {
