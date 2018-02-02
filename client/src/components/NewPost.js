@@ -1,7 +1,8 @@
 //import PropTypes from 'prop-types'
 import React, { Component } from 'react';
-//import { getPosts } from '../dispatches/CategoryDispatcher.js';
-//import { connect } from 'react-redux';
+import { getCategories, addNewPost } from '../dispatches/CategoryDispatcher.js';
+import { connect } from 'react-redux';
+import { Field, reduxForm } from 'redux-form';
 import Modal from 'react-modal'
 
 const customStyleModal = {
@@ -32,17 +33,47 @@ const customStyleModal = {
   }
 }
 
+const validate = values => {
+
+    const errors = {};
+
+    return errors
+}
+
+
+
 class NewPost extends Component {
   state = {
     newPostModal: false
-}
+  }
 
-openNewPostModal = () => this.setState(() => ({ newPostModal: true }))
-closeNewPostModal = () => this.setState(() => ({ newPostModal: false }))
+    openNewPostModal = () => this.setState(() => ({ newPostModal: true }))
+    closeNewPostModal = () => this.setState(() => ({ newPostModal: false }))
 
+    componentWillMount() {
+        this.props.getCategories();
+    }
+
+    postForm = (post) => {
+        const uid = 23123;
+        const newPost = {
+          id: uid,
+          timestamp: Date.now(),
+          title: 'aaaaa',
+          body: post.body,
+          author: 'bbbb',
+          category: 'redux'
+        }
+        this.props.createPost(newPost, () => {
+            this.props.history.push('/');
+        });
+      //  this.props.resetPostForm()
+        this.closeNewPostModal()
+      }
 
   render() {
     const { newPostModal } = this.state
+    const { categories } = this.props
     Modal.setAppElement('body')
     return (
      <div>
@@ -52,8 +83,36 @@ closeNewPostModal = () => this.setState(() => ({ newPostModal: false }))
             style={customStyleModal}
             onRequestClose={this.closeNewPostModal}
             contentLabel='Modal'>
+            {newPostModal && <form >
                 <div className="close-click" >X</div>
-                    {newPostModal && <div><span>teste</span></div>}
+                <div className="form-group">
+                    <label htmlFor="titlePost">Title</label>
+                    <input type="text" className="form-control" id="titlePost" placeholder="Post title"/>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="authorPost">Author</label>
+                    <input type="text" className="form-control" id="authorPost" placeholder="Author name"/>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="commentPost">Category</label>
+                    <select className="form-control" id="CategoryPost">
+                    {categories.length > 1 && categories.map((category, index) => (
+                        category.name != "all" &&
+                            <option
+                                key={index}
+                                value={category.name}>
+                                    {category.name}
+                            </option>
+                    ))}
+                    </select>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="categoryPost">Comment</label>
+                    <input type="text" className="form-control" id="commentPost" placeholder="Comment"/>
+                </div>
+                <button onClick={this.postForm} className="btn btn-success">Submit</button>
+             </form>
+            }
         </Modal>
       <div>
              <button onClick={this.openNewPostModal} className="btn btn-success">Submit</button>
@@ -75,4 +134,20 @@ const mapDispatchToProps = (dispatch) => {
   }
 }*/
 
-export default (NewPost);
+// export default (NewPost);
+
+const mapStateToProps = (state) => {
+    return { categories: state.categories }
+  }
+
+const mapDispatchToProps = (dispatch) => {
+    return { getCategories: (category) => dispatch(getCategories()),
+             addNewPost:    (post)      => dispatch(addNewPost(post)) }
+}
+
+NewPost = connect(mapStateToProps, mapDispatchToProps)(NewPost);
+
+export default reduxForm({
+    validate,
+    form: 'postForm',
+})(NewPost)
