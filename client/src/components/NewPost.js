@@ -1,9 +1,12 @@
 //import PropTypes from 'prop-types'
 import React, { Component } from 'react';
-import { getCategories, addNewPost } from '../dispatches/CategoryDispatcher.js';
+import { getCategories, createPost } from '../dispatches/CategoryDispatcher.js';
 import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, reset } from 'redux-form';
+import { FormGroup, FormControl } from 'react-bootstrap'
+import shortid from 'shortid'
 import Modal from 'react-modal'
+
 
 const customStyleModal = {
   overlay : {
@@ -40,8 +43,6 @@ const validate = values => {
     return errors
 }
 
-
-
 class NewPost extends Component {
   state = {
     newPostModal: false
@@ -55,25 +56,65 @@ class NewPost extends Component {
     }
 
     postForm = (post) => {
-        const uid = 23123;
+        const uid = shortid.generate();
         const newPost = {
           id: uid,
-          timestamp: Date.now(),
-          title: 'aaaaa',
-          body: post.body,
-          author: 'bbbb',
-          category: 'redux'
+          title: post.title,
+          body: post.description,
+          author: post.author,
+          category: post.category,
+          timestamp: Date.now()
         }
+        console.log(this.props)
         this.props.createPost(newPost, () => {
             this.props.history.push('/');
         });
-      //  this.props.resetPostForm()
+
+        this.props.resetPost()
         this.closeNewPostModal()
       }
 
+      renderInput(values) {
+          //const { meta: { touched, error } } = field;
+          const className = null;
+          return (
+              <FormGroup validationState={className}>
+                <label>{values.label}</label>
+                <input className="form-control" { ...values.input } type="text" placeholder={values.placeholder}/>
+              </FormGroup>
+          );
+      }
+
+
+    renderSelect(values) {
+        //const { categories } = this.props;
+        //const { meta: { touched, error } } = field;
+        const className = null;
+        console.log(values)
+        return (
+            <FormGroup validationState={className}>
+              <label>{values.label}</label>
+              <select className="form-control" id="CategoryPost">
+                {values.categories.length > 1 && values.categories.map((category, index) => (
+                    category.name != "all" &&
+                        <option
+                            key={index}
+                            value={category.name}>
+                                {category.name}
+                        </option>
+                ))}
+                </select>
+            </FormGroup>
+        );
+    }
+
   render() {
     const { newPostModal } = this.state
-    const { categories } = this.props
+    const { handleSubmit, categories } = this.props
+    console.log(this.props)
+    console.log(this.context)
+    console.log(this.context.router)
+    console.log("--->")
     Modal.setAppElement('body')
     return (
      <div>
@@ -82,59 +123,45 @@ class NewPost extends Component {
             isOpen={newPostModal}
             style={customStyleModal}
             onRequestClose={this.closeNewPostModal}
-            contentLabel='Modal'>
-            {newPostModal && <form >
-                <div className="close-click" >X</div>
-                <div className="form-group">
-                    <label htmlFor="titlePost">Title</label>
-                    <input type="text" className="form-control" id="titlePost" placeholder="Post title"/>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="authorPost">Author</label>
-                    <input type="text" className="form-control" id="authorPost" placeholder="Author name"/>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="commentPost">Category</label>
-                    <select className="form-control" id="CategoryPost">
-                    {categories.length > 1 && categories.map((category, index) => (
-                        category.name != "all" &&
-                            <option
-                                key={index}
-                                value={category.name}>
-                                    {category.name}
-                            </option>
-                    ))}
-                    </select>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="categoryPost">Comment</label>
-                    <input type="text" className="form-control" id="commentPost" placeholder="Comment"/>
-                </div>
-                <button onClick={this.postForm} className="btn btn-success">Submit</button>
-             </form>
-            }
+            contentLabel='Modal'
+            >
+             <form onSubmit={handleSubmit(this.postForm.bind(this))}>
+                <Field
+                      label="Title:"
+                      name="title"
+                      placeholder="Post title"
+                      component={this.renderInput}
+                />
+                <Field
+                      label="Description:"
+                      name="description"
+                      placeholder="Description content"
+                      component={this.renderInput}
+                />
+                <Field
+                      label="Category:"
+                      name="category"
+                      placeholder="Author Name"
+                      categories={categories}
+                      component={this.renderSelect}
+                />
+                <Field
+                      label="Author:"
+                      name="author"
+                      placeholder="Author Name"
+                      component={this.renderInput}
+                />
+                <button type="submit" className="btn btn-success">Submit</button>
+            </form>
         </Modal>
-      <div>
-             <button onClick={this.openNewPostModal} className="btn btn-success">Submit</button>
+
+        <div>
+          <button onClick={this.openNewPostModal} className="btn btn-success">Submit</button>
         </div>
     </div>
     )
   }
 }
-/*
-const mapStateToProps = (state) => {
-  return {
-    posts: state.posts
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-        getPosts: (category) => dispatch(getPosts(category))
-  }
-}*/
-
-// export default (NewPost);
 
 const mapStateToProps = (state) => {
     return { categories: state.categories }
@@ -142,7 +169,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return { getCategories: (category) => dispatch(getCategories()),
-             addNewPost:    (post)      => dispatch(addNewPost(post)) }
+             createPost:    (post)     => dispatch(createPost(post), () => { this.props.history.push('/'); }),
+             resetPost:     ()         => dispatch(reset('postForm'))
+           }
 }
 
 NewPost = connect(mapStateToProps, mapDispatchToProps)(NewPost);

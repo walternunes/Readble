@@ -39,9 +39,13 @@ export function votePost(postId, vote) {
   }
 }
 
-export function addNewPost(values, callback) {
+export function createPost(values, callback) {
   const { title, body, author, category } = values;
 console.log("--->newP")
+console.log(callback)
+console.log(body)
+console.log(author)
+console.log(category)
   const data = {
       id: Date.now(),
       timestamp: Date.now(),
@@ -54,7 +58,6 @@ console.log("--->newP")
   return dispatch => {
       axios.post(`http://localhost:3001/posts/`, data)
           .then(res => {
-              callback();
               dispatch({ type: CREATE_POST, posts: res.data });
           });
 
