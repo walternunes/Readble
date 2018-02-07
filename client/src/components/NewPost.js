@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { getCategories, createPost, getPosts } from '../dispatches/CategoryDispatcher.js';
 import { connect } from 'react-redux';
 import { Field, reduxForm, reset } from 'redux-form';
-import { FormGroup, FormControl, Form } from 'react-bootstrap'
+import { FormGroup, FormControl } from 'react-bootstrap'
 import shortid from 'shortid'
 import Modal from 'react-modal'
 
@@ -56,8 +56,6 @@ const validate = values => {
         errors.author = true
     }
 
-    console.log("-<><>")
-    console.log(errors)
     return errors
 }
 
@@ -208,4 +206,5 @@ NewPost = connect(mapStateToProps, mapDispatchToProps)(NewPost);
 export default reduxForm({
     validate,
     form: 'postForm',
+    destroyOnUnmount: false,
 })(NewPost)
