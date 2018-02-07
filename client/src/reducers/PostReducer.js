@@ -15,10 +15,10 @@ export default function (state = INITIAL_STATE, action) {
                 return state.map((post) => post.id === action.posts.id ? action.posts : post )
         case CREATE_POST:
             console.log("--->")
-                   return {
+                   return [
                        ...state,
-                       [action.posts.id]: action.posts
-                   };
+                       action.posts
+                   ];
         default:
             return state;
     }

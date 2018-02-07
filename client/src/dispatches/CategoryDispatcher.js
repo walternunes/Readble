@@ -41,11 +41,7 @@ export function votePost(postId, vote) {
 
 export function createPost(values, callback) {
   const { title, body, author, category } = values;
-console.log("--->newP")
-console.log(callback)
-console.log(body)
-console.log(author)
-console.log(category)
+  console.log(values)
   const data = {
       id: Date.now(),
       timestamp: Date.now(),
