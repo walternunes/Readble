@@ -1,6 +1,7 @@
 //import PropTypes from 'prop-types'
 import React, { Component } from 'react';
 import NewPost from './NewPost.js'
+import EditPost from './EditPost.js'
 import { getPosts, votePost } from '../dispatches/CategoryDispatcher.js';
 import { connect } from 'react-redux';
 import Timestamp from 'react-timestamp';
@@ -58,7 +59,8 @@ class Posts extends Component {
 
           </div>
           <div className="fixedContainer">
-              <button type="submit" className="btn btn-success">Submit</button>
+              <EditPost post={post}/>
+              <button type="submit" className="btn btn-success">Edit</button>
             </div>
         </Row>
       ))}

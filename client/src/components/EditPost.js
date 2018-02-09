@@ -1,6 +1,6 @@
 //import PropTypes from 'prop-types'
 import React, { Component } from 'react';
-import { getCategories, createPost} from '../dispatches/CategoryDispatcher.js';
+import { getCategories, editPost } from '../dispatches/CategoryDispatcher.js';
 import { connect } from 'react-redux';
 import { Field, reduxForm, reset } from 'redux-form';
 import { FormGroup, FormControl } from 'react-bootstrap'
@@ -57,20 +57,25 @@ const validate = values => {
     return errors
 }
 
-class NewPost extends Component {
+class EditPost extends Component {
   state = {
-    newPostModal: false
+    editPostModal: false
   }
 
-    openNewPostModal = () => this.setState(() => ({ newPostModal: true }))
-    closeNewPostModal = () => this.setState(() => ({ newPostModal: false }))
+    openEditPostModal = () => {
+      this.props.initialize(this.props.post);
+      this.setState(() => ({ editPostModal: true }))
+    }
+    closeEditPostModal = () => this.setState(() => ({ editPostModal: false }))
 
     componentWillMount() {
-        this.props.getCategories();
+        // this.props.getCategories();
     }
 
-    postForm = (post) => {
-        const uid = shortid.generate();
+    editPostForm = (post) => {
+        console.log("<><>")
+        console.log(post)
+        /*const uid = shortid.generate();
         const newPost = {
           id: uid,
           title: post.title,
@@ -78,11 +83,10 @@ class NewPost extends Component {
           author: post.author,
           category: post.category,
           timestamp: Date.now()
-        }
-        this.props.createPost(newPost)
-
+        }*/
+        this.props.editPost(post)
         this.props.resetPost()
-        this.closeNewPostModal()
+        this.closeEditPostModal()
       }
 
       renderInput(values) {
@@ -104,50 +108,22 @@ class NewPost extends Component {
           );
       }
 
-
-    renderSelect(values) {
-        const { meta: { touched, error, pristine } } = values;
-        let className = null;
-        if(touched && error){
-            className = 'has-error';
-        } else if(!pristine){
-            className = "has-success"
-        }
-        return (
-            <FormGroup className={className}>
-              <label>{values.label}</label>
-              <select className="form-control" { ...values.input }>
-                <option value="" defaultValue> Please select a category </option>
-                {values.categories.length > 1 && values.categories.map((category, index) => (
-                    category.name != "all" &&
-                        <option
-                            key={index}
-                            value={category.name} >
-                                {category.name}
-                        </option>
-                ))}
-                </select>
-                { error && touched &&
-                    <div> <span className="control-label" >Required Field</span></div> }
-            </FormGroup>
-        );
-    }
-
   render() {
-    const { newPostModal } = this.state
-    const { handleSubmit, categories } = this.props
+    const { editPostModal } = this.state
+    const { handleSubmit, post } = this.props
+  //  console.log(post)
 
     Modal.setAppElement('body')
     return (
      <div>
         <Modal
             overlayClassName='overlay'
-            isOpen={newPostModal}
+            isOpen={editPostModal}
             style={customStyleModal}
-            onRequestClose={this.closeNewPostModal}
+            onRequestClose={this.closeEditPostModal}
             contentLabel='Modal'
             >
-             <form id="postForm" onSubmit={handleSubmit(this.postForm.bind(this))}>
+             <form id="postForm" onSubmit={handleSubmit(this.editPostForm.bind(this))}>
                 <Field
                       label="Title:"
                       name="title"
@@ -156,21 +132,8 @@ class NewPost extends Component {
                 />
                 <Field
                       label="Description:"
-                      name="description"
+                      name="body"
                       placeholder="Description content"
-                      component={this.renderInput}
-                />
-                <Field
-                      label="Category:"
-                      name="category"
-                      placeholder="Author Name"
-                      categories={categories}
-                      component={this.renderSelect}
-                />
-                <Field
-                      label="Author:"
-                      name="author"
-                      placeholder="Author Name"
                       component={this.renderInput}
                 />
                 <button type="submit" className="btn btn-success">Submit</button>
@@ -178,28 +141,27 @@ class NewPost extends Component {
         </Modal>
 
         <div>
-          <button onClick={this.openNewPostModal} className="btn btn-success">Submit</button>
+          <button onClick={this.openEditPostModal} className="btn btn-success">Submit</button>
         </div>
     </div>
     )
   }
 }
 
-const mapStateToProps = (state) => {
-    return { categories: state.categories }
+const mapStateToProps = (state, single) => {
+    return { }
   }
 
 const mapDispatchToProps = (dispatch) => {
-    return { getCategories: (category) => dispatch(getCategories()),
-             createPost:    (post)     => dispatch(createPost(post)),
+    return { editPost:    (post)     => dispatch(editPost(post)),
              resetPost:     ()         => dispatch(reset('postForm'))
            }
 }
 
-NewPost = connect(mapStateToProps, mapDispatchToProps)(NewPost);
+EditPost = connect(mapStateToProps, mapDispatchToProps)(EditPost);
 
 export default reduxForm({
     validate,
-    form: 'newPostForm',
+    form: 'editForm',
     destroyOnUnmount: false,
-})(NewPost)
+})(EditPost)
