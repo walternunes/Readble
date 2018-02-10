@@ -5,6 +5,7 @@ export const GET_ALL_POSTS = 'get_all_posts';
 export const CREATE_POST = 'create_post';
 export const EDIT_POST = 'edit_post';
 export const VOTE_POST = 'vote_posts';
+export const DELETE_POST = 'delete_post'
 
 const AUTH_HEADERS = { 'Authorization': 'whatever-you-want', 'Accept': 'application/json', };
 axios.defaults.headers.common['Authorization'] = AUTH_HEADERS;
@@ -62,11 +63,21 @@ export function createPost(values) {
 }
 
 
-export function editPost(values, id) {
+export function editPost(values) {
   return dispatch => {
         axios.put(`http://localhost:3001/posts/${values.id}`, values)
             .then(res => {
                 dispatch({type: EDIT_POST, posts: res.data})
+            });
+    }
+}
+
+export function deletePost(id) {
+    console.log("ddlt")
+    return dispatch => {
+        axios.delete(`http://localhost:3001/posts/${id}`)
+            .then(res => {
+                dispatch({type: DELETE_POST, posts: res.data});
             });
     }
 }

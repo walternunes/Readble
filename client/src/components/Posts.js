@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import NewPost from './NewPost.js'
 import EditPost from './EditPost.js'
-import { getPosts, votePost } from '../dispatches/CategoryDispatcher.js';
+import { getPosts, votePost, deletePost } from '../dispatches/CategoryDispatcher.js';
 import { connect } from 'react-redux';
 import Timestamp from 'react-timestamp';
 import { Col, Row } from 'react-bootstrap'
@@ -22,7 +22,7 @@ class Posts extends Component {
   }
 
   render() {
-    const { posts, votePost } = this.props
+    const { deletePost, posts, votePost } = this.props
 
     return (
       <Col sm={9}>
@@ -60,8 +60,8 @@ class Posts extends Component {
           </div>
           <div className="fixedContainer">
               <EditPost post={post}/>
-              <button type="submit" className="btn btn-success">Edit</button>
-            </div>
+              <button onClick={() => deletePost(post.id)} className="btn btn-success">Delete</button>
+          </div>
         </Row>
       ))}
     </Col>
@@ -78,7 +78,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
         getPosts: (category) => dispatch(getPosts(category)),
-        votePost: (postId, vote) => dispatch(votePost(postId, vote))
+        votePost: (postId, vote) => dispatch(votePost(postId, vote)),
+        deletePost: (id) => dispatch(deletePost(id))
   }
 }
 

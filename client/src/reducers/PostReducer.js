@@ -2,7 +2,8 @@ import {
     GET_ALL_POSTS,
     VOTE_POST,
     CREATE_POST,
-    EDIT_POST
+    EDIT_POST,
+    DELETE_POST
 } from '../dispatches/CategoryDispatcher.js';
 const INITIAL_STATE = {};
 
@@ -24,6 +25,9 @@ export default function (state = INITIAL_STATE, action) {
                    return state.map((post) => post.id === action.posts.id
             ? {...post, title: action.posts.title, body:action.posts.body}
             : post)
+      case DELETE_POST:
+          console.log("delete")
+          return state.filter((post) => post.id !== action.posts.id)
         default:
             return state;
     }
