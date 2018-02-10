@@ -21,9 +21,11 @@ class PostDetail extends Component {
   render() {
     const { deletePost, posts, votePost, comments } = this.props
     const post = posts[0] || {}
-  //  const postComments = comments[post.id] || []
+    const postComments = comments[post.id] || []
     console.log(this.props)
     console.log(comments)
+    console.log(post)
+    console.log("<<<<<<<")
     return (
       <Col sm={12}>
         <NewPost/>
@@ -71,7 +73,9 @@ class PostDetail extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    comments: state.comments,
     posts: state.posts
+
   }
 }
 

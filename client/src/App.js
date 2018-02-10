@@ -21,12 +21,12 @@ class App extends Component {
               <Posts/>
             </Row>
         )}/>
-        <Route  path='/:category/:id' render={(props) => (
+        <Route exact path='/:category/:id' render={(props) => (
             <Row className="content">
               <PostDetail {...props}/>
             </Row>
         )}/>
-        <Route  path='/:category' render={(props) => (
+        <Route exact path='/:category' render={(props) => (
             <Row className="content">
               <Categories/>
               <Posts {...props}/>

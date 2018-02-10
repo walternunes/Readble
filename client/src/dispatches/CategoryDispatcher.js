@@ -93,12 +93,18 @@ export function getPost(id) {
     }
 }
 
+const getPostComments = (postId, comments)  => {
+  return {
+    type: GET_COMMENTS,
+    postId,
+    comments
+  }
+}
 
 export function getComments(id) {
   return dispatch => {
         axios.get(`http://localhost:3001/posts/${id}/comments`)
-            .then(res => {dispatch({ type: GET_COMMENTS, posts: res.data })
-            })
+            .then(res => { console.log("res"); console.log(res); dispatch(getPostComments(id, res))});
 
     }
 }

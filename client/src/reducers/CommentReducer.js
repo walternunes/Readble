@@ -7,8 +7,10 @@ const INITIAL_STATE = {};
 export default function (state = INITIAL_STATE, action) {
     switch (action.type) {
         case GET_COMMENTS:
-                console.log("--<>")
-                return _.mapKeys(action.payload, 'id');
+                return {
+        ...state,
+        [action.postId]: action.comments
+      }
         default:
             return state;
     }
