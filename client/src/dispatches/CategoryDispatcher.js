@@ -7,6 +7,8 @@ export const CREATE_POST = 'create_post';
 export const EDIT_POST = 'edit_post';
 export const VOTE_POST = 'vote_posts';
 export const DELETE_POST = 'delete_post'
+export const GET_COMMENTS = 'get_comments'
+
 
 const AUTH_HEADERS = { 'Authorization': 'whatever-you-want', 'Accept': 'application/json', };
 axios.defaults.headers.common['Authorization'] = AUTH_HEADERS;
@@ -87,6 +89,16 @@ export function getPost(id) {
     return dispatch => {
         axios.get(`http://localhost:3001/posts/${id}`)
             .then(res => dispatch({type: GET_POST, posts: res.data}));
+
+    }
+}
+
+
+export function getComments(id) {
+  return dispatch => {
+        axios.get(`http://localhost:3001/posts/${id}/comments`)
+            .then(res => {dispatch({ type: GET_COMMENTS, posts: res.data })
+            })
 
     }
 }
