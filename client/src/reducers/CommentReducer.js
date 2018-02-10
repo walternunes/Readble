@@ -8,8 +8,8 @@ export default function (state = INITIAL_STATE, action) {
     switch (action.type) {
         case GET_COMMENTS:
                 return {
-        ...state,
-        [action.postId]: action.comments
+                  ...state,
+                  [action.id]: action.comments
       }
         default:
             return state;
