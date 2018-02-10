@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const GET_CATEGORIES = 'get_categories';
+export const GET_POST = 'get_post';
 export const GET_ALL_POSTS = 'get_all_posts';
 export const CREATE_POST = 'create_post';
 export const EDIT_POST = 'edit_post';
@@ -79,5 +80,13 @@ export function deletePost(id) {
             .then(res => {
                 dispatch({type: DELETE_POST, posts: res.data});
             });
+    }
+}
+
+export function getPost(id) {
+    return dispatch => {
+        axios.get(`http://localhost:3001/posts/${id}`)
+            .then(res => dispatch({type: GET_POST, posts: res.data}));
+
     }
 }
