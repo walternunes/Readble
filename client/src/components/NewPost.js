@@ -192,7 +192,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return { getCategories: (category) => dispatch(getCategories()),
              createPost:    (post)     => dispatch(createPost(post)),
-             resetPost:     ()         => dispatch(reset('postForm'))
+             resetPost:     ()         => dispatch(reset('newPostForm'))
            }
 }
 
