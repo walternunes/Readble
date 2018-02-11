@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import NewPost from './NewPost.js'
 import EditPost from './EditPost.js'
-import { getPost, getComments, votePost, deletePost } from '../dispatches/CategoryDispatcher.js';
+import { getPost, getComments, voteComment, deletePost } from '../dispatches/CategoryDispatcher.js';
 import { connect } from 'react-redux';
 import Timestamp from 'react-timestamp';
 import { Link } from 'react-router-dom'
@@ -19,16 +19,9 @@ class PostDetail extends Component {
   }
 
   render() {
-    const { comments } = this.props
+    const { comments, voteComment } = this.props
     const postComments = comments[this.props.match.params.id] || []
-    console.log("comments--<><>")
-    console.log(postComments)
-   /* const post = posts[0] || {}
-    const postComments = comments[post.id] || []
-    console.log(this.props)
-    console.log(comments)
-    console.log(post)
-    console.log("<<<<<<<")*/
+
     return (
       <Col sm={12}>
         { postComments.length > 1 && <h4>Comments</h4>}
@@ -39,8 +32,8 @@ class PostDetail extends Component {
           <div className="list-item-vote-box">
             <div className="list-item-vote-count">
               <div className="list-item-vote-arrows">
-                <input title="Click to vote up"  type="submit" value="+" className="list-item-vote-arrows-up" onClick={() => votePost(comment.id, 'upVote')}/>
-                <input title="Click to vote down"  type="submit" value="&ndash;" className="list-item-vote-arrows-down" onClick={() => votePost(comment.id, 'downVote')}/>
+                <input title="Click to vote up"  type="submit" value="+" className="list-item-vote-arrows-up" onClick={() => voteComment(comment.id, 'upVote')}/>
+                <input title="Click to vote down"  type="submit" value="&ndash;" className="list-item-vote-arrows-down" onClick={() => voteComment(comment.id, 'downVote')}/>
               </div>
               <div className="list-item-vote-text">
                 <span className="list-item-vote-text">
@@ -83,6 +76,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
         getComments: (id) => dispatch(getComments(id)),
+        voteComment: (commentId, vote) => dispatch(voteComment(commentId, vote)),
+    //    deletePost: (id) => dispatch(deletePost(id))
   }
 }
 

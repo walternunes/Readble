@@ -6,8 +6,9 @@ export const GET_ALL_POSTS = 'get_all_posts';
 export const CREATE_POST = 'create_post';
 export const EDIT_POST = 'edit_post';
 export const VOTE_POST = 'vote_posts';
-export const DELETE_POST = 'delete_post'
-export const GET_COMMENTS = 'get_comments'
+export const DELETE_POST = 'delete_post';
+export const GET_COMMENTS = 'get_comments';
+export const VOTE_COMMENT = 'vote_comment';
 
 
 const AUTH_HEADERS = { 'Authorization': 'whatever-you-want', 'Accept': 'application/json', };
@@ -43,6 +44,13 @@ export function votePost(postId, vote) {
           .then(res => dispatch({ type: VOTE_POST, posts: res.data }))
   }
 }
+
+export function voteComment(commentId, vote) {
+    return dispatch => {
+        axios.post(`http://localhost:3001/comments/${commentId}`, { option: vote })
+            .then(res => dispatch({ type: VOTE_COMMENT, comments: res.data }))
+    }
+  }
 
 export function createPost(values) {
   const { title, body, author, category } = values;
