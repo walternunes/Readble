@@ -1,5 +1,5 @@
 import {
-    GET_COMMENTS, VOTE_COMMENT
+    GET_COMMENTS, VOTE_COMMENT, DELETE_COMMENT
 } from '../dispatches/CategoryDispatcher.js'; 
 const INITIAL_STATE = {};
 
@@ -15,6 +15,11 @@ export default function (state = INITIAL_STATE, action) {
               ? action.comments
               : comment)
         };
+        case DELETE_COMMENT:
+      return {
+        ...state,
+        [action.comments.parentId]: state[action.comments.parentId].filter((comment) => comment.id !== action.comments.id)
+      }
         case GET_COMMENTS:
                 return {
                   ...state,

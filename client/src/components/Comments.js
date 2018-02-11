@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import NewPost from './NewPost.js'
 import EditPost from './EditPost.js'
-import { getPost, getComments, voteComment, deletePost } from '../dispatches/CategoryDispatcher.js';
+import { getPost, getComments, voteComment, deleteComment } from '../dispatches/CategoryDispatcher.js';
 import { connect } from 'react-redux';
 import Timestamp from 'react-timestamp';
 import { Link } from 'react-router-dom'
@@ -19,14 +19,14 @@ class PostDetail extends Component {
   }
 
   render() {
-    const { comments, voteComment } = this.props
+    const { comments, voteComment, deleteComment } = this.props
     const postComments = comments[this.props.match.params.id] || []
 
     return (
       <Col sm={12}>
-        { postComments.length > 1 && <h4>Comments</h4>}
+        { postComments.length > 0 && <h4>Comments</h4>}
         <ListGroup >
-          {postComments.length > 1 && postComments.map((comment, index) => (
+          {postComments.length > 0 && postComments.map((comment, index) => (
               <ListGroupItem key={index}>
                   <Row className="list-item-box-comments" key={index}>
           <div className="list-item-vote-box">
@@ -55,7 +55,7 @@ class PostDetail extends Component {
           </div>
           <div className="fixedContainer">
               <EditPost post={comment}/>
-              <button onClick={() => deletePost(comment.id)} className="btn btn-success">Delete</button>
+              <button onClick={() => deleteComment(comment.id)} className="btn btn-success">Delete</button>
           </div>
         </Row>
               </ListGroupItem>
@@ -77,7 +77,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
         getComments: (id) => dispatch(getComments(id)),
         voteComment: (commentId, vote) => dispatch(voteComment(commentId, vote)),
-    //    deletePost: (id) => dispatch(deletePost(id))
+        deleteComment: (id) => dispatch(deleteComment(id))
   }
 }
 

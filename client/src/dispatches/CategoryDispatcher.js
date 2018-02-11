@@ -9,6 +9,7 @@ export const VOTE_POST = 'vote_posts';
 export const DELETE_POST = 'delete_post';
 export const GET_COMMENTS = 'get_comments';
 export const VOTE_COMMENT = 'vote_comment';
+export const DELETE_COMMENT = 'delete_comment';
 
 
 const AUTH_HEADERS = { 'Authorization': 'whatever-you-want', 'Accept': 'application/json', };
@@ -84,11 +85,19 @@ export function editPost(values) {
 }
 
 export function deletePost(id) {
-    console.log("ddlt")
     return dispatch => {
         axios.delete(`http://localhost:3001/posts/${id}`)
             .then(res => {
                 dispatch({type: DELETE_POST, posts: res.data});
+            });
+    }
+}
+
+export function deleteComment(id) {
+    return dispatch => {
+        axios.delete(`http://localhost:3001/comments/${id}`)
+            .then(res => {
+                dispatch({type: DELETE_COMMENT, comments: res.data});
             });
     }
 }

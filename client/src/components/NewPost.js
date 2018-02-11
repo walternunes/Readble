@@ -118,7 +118,7 @@ class NewPost extends Component {
               <label>{values.label}</label>
               <select className="form-control" { ...values.input }>
                 <option value="" defaultValue> Please select a category </option>
-                {values.categories.length > 1 && values.categories.map((category, index) => (
+                {values.categories.length > 0 && values.categories.map((category, index) => (
                     category.name != "all" &&
                         <option
                             key={index}
