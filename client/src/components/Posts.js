@@ -23,6 +23,7 @@ class Posts extends Component {
 
   render() {
     const { deletePost, posts, votePost } = this.props
+    console.log(posts)
     return (
       <Col sm={9}>
         <NewPost/>

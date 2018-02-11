@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Categories from './components/Categories.js'
 import Posts from './components/Posts.js'
+import Comments from './components/Comments.js'
 import PostDetail from './components/PostDetail.js'
 import { Route } from 'react-router-dom'
 import { Row, Grid } from 'react-bootstrap'
@@ -24,6 +25,7 @@ class App extends Component {
         <Route exact path='/:category/:id' render={(props) => (
             <Row className="content">
               <PostDetail {...props}/>
+            <Comments {...props} />
             </Row>
         )}/>
         <Route exact path='/:category' render={(props) => (

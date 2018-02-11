@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import NewPost from './NewPost.js'
 import EditPost from './EditPost.js'
+import Comments from './Comments.js'
 import { getPost, getComments, votePost, deletePost } from '../dispatches/CategoryDispatcher.js';
 import { connect } from 'react-redux';
 import Timestamp from 'react-timestamp';
@@ -15,13 +16,13 @@ class PostDetail extends Component {
 
   componentWillMount() {
     this.props.getPost(this.props.match.params.id);
-    this.props.getComments(this.props.match.params.id);
+   // this.props.getComments(this.props.match.params.id);
   }
 
   render() {
     const { deletePost, posts, votePost, comments } = this.props
     const post = posts[0] || {}
-    const postComments = comments[post.id] || []
+    //const postComments = comments[post.id] || []
     console.log(this.props)
     console.log(comments)
     console.log(post)
