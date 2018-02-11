@@ -5,7 +5,8 @@ import EditPost from './EditPost.js'
 import { getPost, getComments, votePost, deletePost } from '../dispatches/CategoryDispatcher.js';
 import { connect } from 'react-redux';
 import Timestamp from 'react-timestamp';
-import { Col, Row } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+import { Col, Row, ListGroupItem, ListGroup } from 'react-bootstrap'
 
 class PostDetail extends Component {
   state = {
@@ -19,8 +20,9 @@ class PostDetail extends Component {
 
   render() {
     const { comments } = this.props
+    const postComments = comments[this.props.match.params.id] || []
     console.log("comments--<><>")
-    console.log(comments)
+    console.log(postComments)
    /* const post = posts[0] || {}
     const postComments = comments[post.id] || []
     console.log(this.props)
@@ -28,9 +30,45 @@ class PostDetail extends Component {
     console.log(post)
     console.log("<<<<<<<")*/
     return (
-      <div>
-          <span>this is a comment</span>
+      <Col sm={12}>
+        { postComments.length > 1 && <h4>Comments</h4>}
+        <ListGroup >
+          {postComments.length > 1 && postComments.map((comment, index) => (
+              <ListGroupItem key={index}>
+                  <Row className="list-item-box-comments" key={index}>
+          <div className="list-item-vote-box">
+            <div className="list-item-vote-count">
+              <div className="list-item-vote-arrows">
+                <input title="Click to vote up"  type="submit" value="+" className="list-item-vote-arrows-up" onClick={() => votePost(comment.id, 'upVote')}/>
+                <input title="Click to vote down"  type="submit" value="&ndash;" className="list-item-vote-arrows-down" onClick={() => votePost(comment.id, 'downVote')}/>
+              </div>
+              <div className="list-item-vote-text">
+                <span className="list-item-vote-text">
+                  <span className="list-item-vote-text-number">{comment.voteScore}</span><span className="list-item-vote-text-number-text"> votes</span>
+                </span>
+              </div>
+            </div>
           </div>
+          <div className="list-item-body-box">
+            <div className="list-item-body-summary">
+              <a href=""><span>{comment.title} </span></a>
+            </div>
+            <div className="list-item-body-author">
+              <span className="glyphicon glyphicon-time"></span><span className="list-item-body-author-text"> Comment by {comment.author}, <Timestamp time={comment.timestamp} /></span>
+            </div>
+            <div className="list-item-body-description">
+                <span className="list-item-body-description-text">{comment.body}</span>
+            </div>
+          </div>
+          <div className="fixedContainer">
+              <EditPost post={comment}/>
+              <button onClick={() => deletePost(comment.id)} className="btn btn-success">Delete</button>
+          </div>
+        </Row>
+              </ListGroupItem>
+          ))}
+        </ListGroup>
+      </Col>
     )
   }
 }

@@ -16,17 +16,11 @@ class PostDetail extends Component {
 
   componentWillMount() {
     this.props.getPost(this.props.match.params.id);
-   // this.props.getComments(this.props.match.params.id);
   }
 
   render() {
     const { deletePost, posts, votePost, comments } = this.props
     const post = posts[0] || {}
-    //const postComments = comments[post.id] || []
-    console.log(this.props)
-    console.log(comments)
-    console.log(post)
-    console.log("<<<<<<<")
     return (
       <Col sm={12}>
         <NewPost/>
@@ -59,7 +53,9 @@ class PostDetail extends Component {
               <div className="list-item-body-author">
                 <span className="glyphicon glyphicon-time"></span><span className="list-item-body-author-text"> Post by {post.author}, <Timestamp time={post.timestamp} /></span>
               </div>
-
+              <div className="list-item-body-description">
+                <span className="list-item-body-description-text">{post.body}</span>
+              </div>
             </div>
             <div className="fixedContainer">
                 <EditPost post={post}/>
@@ -83,7 +79,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
         getPost: (id) => dispatch(getPost(id)),
-        getComments: (id) => dispatch(getComments(id)),
         votePost: (postId, vote) => dispatch(votePost(postId, vote)),
         deletePost: (id) => dispatch(deletePost(id))
   }
