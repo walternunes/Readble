@@ -49,7 +49,7 @@ class PostDetail extends Component {
               <a href=""><span>{comment.title} </span></a>
             </div>
             <div className="list-item-body-author">
-              <span className="glyphicon glyphicon-time"></span><span className="list-item-body-author-text"> Comment by {comment.author}, <Timestamp time={comment.timestamp} /></span>
+              <span className="glyphicon glyphicon-time"></span><span className="list-item-body-author-text"> Comment by {comment.author} at {new Date(1467166872634).toLocaleString()}</span>
             </div>
             <div className="list-item-body-description">
                 <span className="list-item-body-description-text">{comment.body}</span>

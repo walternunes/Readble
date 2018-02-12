@@ -4,7 +4,6 @@ import NewPost from './NewPost.js'
 import EditPost from './EditPost.js'
 import { getPosts, votePost, deletePost } from '../dispatches/CategoryDispatcher.js';
 import { connect } from 'react-redux';
-import Timestamp from 'react-timestamp';
 import { Col, Row } from 'react-bootstrap'
 
 class Posts extends Component {
@@ -23,7 +22,9 @@ class Posts extends Component {
 
   render() {
     const { deletePost, posts, votePost } = this.props
+    const Timestamp = require('react-timestamp');
     console.log(posts)
+    console.log(new Date(1467166872634).toLocaleString())
     return (
       <Col sm={9}>
         <NewPost/>
@@ -54,7 +55,7 @@ class Posts extends Component {
               <a href=""><span>{post.title} </span></a>
             </div>
             <div className="list-item-body-author">
-              <span className="glyphicon glyphicon-time"></span><span className="list-item-body-author-text"> Post by {post.author}, <Timestamp time={post.timestamp} /></span>
+              <span className="glyphicon glyphicon-time"></span><span className="list-item-body-author-text"> Post by {post.author} at {new Date(1467166872634).toLocaleString()}</span>
             </div>
 
           </div>
