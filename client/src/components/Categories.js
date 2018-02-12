@@ -17,7 +17,7 @@ class Categories extends Component {
       <Col sm={3}>
         <h4>Categories</h4>
         <ListGroup >
-          {categories.length > 1 && categories.map((category, index) => (
+          {categories.length > 0 && categories.map((category, index) => (
               <ListGroupItem key={index}>
                   <Link to={category.path === 'all' ? '/' : `/${category.path}`} onClick={() => getPosts(category.path)}>
                     {category.name}

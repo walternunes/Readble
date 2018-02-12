@@ -10,6 +10,7 @@ export const DELETE_POST = 'delete_post';
 export const GET_COMMENTS = 'get_comments';
 export const VOTE_COMMENT = 'vote_comment';
 export const DELETE_COMMENT = 'delete_comment';
+export const CREATE_COMMENT = 'create_comment';
 
 
 const AUTH_HEADERS = { 'Authorization': 'whatever-you-want', 'Accept': 'application/json', };
@@ -74,6 +75,25 @@ export function createPost(values) {
   }
 }
 
+export function createComment(values) {
+    const { parentId, body, author } = values;
+    console.log("create comment")
+    console.log(values)
+    const data = {
+        id: Date.now(),
+        timestamp: Date.now(),
+        parentId,
+        body,
+        author
+    }
+  
+    return dispatch => {
+        axios.post(`http://localhost:3001/comments/`, data)
+            .then(res => {
+                dispatch({ type: CREATE_COMMENT, comments: res.data });
+            });
+    }
+  }
 
 export function editPost(values) {
   return dispatch => {

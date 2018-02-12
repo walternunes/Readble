@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import Timestamp from 'react-timestamp';
 import { Link } from 'react-router-dom'
 import { Col, Row, ListGroupItem, ListGroup } from 'react-bootstrap'
+import NewComment from './NewComment.js';
 
 class PostDetail extends Component {
   state = {
@@ -24,6 +25,7 @@ class PostDetail extends Component {
 
     return (
       <Col sm={12}>
+        <NewComment parentId={this.props.match.params.id} />
         { postComments.length > 0 && <h4>Comments</h4>}
         <ListGroup >
           {postComments.length > 0 && postComments.map((comment, index) => (
