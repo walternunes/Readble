@@ -11,6 +11,7 @@ export const GET_COMMENTS = 'get_comments';
 export const VOTE_COMMENT = 'vote_comment';
 export const DELETE_COMMENT = 'delete_comment';
 export const CREATE_COMMENT = 'create_comment';
+export const EDIT_COMMENT = 'edit_comment';
 
 
 const AUTH_HEADERS = { 'Authorization': 'whatever-you-want', 'Accept': 'application/json', };
@@ -101,6 +102,17 @@ export function editPost(values) {
             .then(res => {
                 dispatch({type: EDIT_POST, posts: res.data})
             });
+    }
+}
+
+export function editComment(values) {
+  
+    return dispatch => {
+        axios.put(`http://localhost:3001/comments/${values.id}`, values)
+            .then(res => {
+                dispatch({ type: EDIT_COMMENT, comments: res.data })
+            });
+        
     }
 }
 

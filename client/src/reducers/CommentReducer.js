@@ -1,5 +1,5 @@
 import {
-    GET_COMMENTS, VOTE_COMMENT, DELETE_COMMENT, CREATE_COMMENT
+    GET_COMMENTS, VOTE_COMMENT, DELETE_COMMENT, CREATE_COMMENT, EDIT_COMMENT
 } from '../dispatches/CategoryDispatcher.js'; 
 const INITIAL_STATE = {};
 
@@ -17,6 +17,15 @@ export default function (state = INITIAL_STATE, action) {
         ...state,
         [action.comments.parentId]: state[action.comments.parentId].filter((comment) => comment.id !== action.comments.id)
       }
+      case EDIT_COMMENT:
+        return {
+            ...state,
+            [action.comments.parentId]: state[action.comments.parentId].map((comment) => comment.id === action.comments.id
+              ? {...comment,
+                body:action.comments.body,
+                timestamp: action.comments.timestamp}
+              : comment)
+          }
       case CREATE_COMMENT:
                    return {
                     ...state,

@@ -1,6 +1,6 @@
 //import PropTypes from 'prop-types'
 import React, { Component } from 'react';
-import { getCategories, editPost } from '../dispatches/CategoryDispatcher.js';
+import { getCategories, editComment } from '../dispatches/CategoryDispatcher.js';
 import { connect } from 'react-redux';
 import { Field, reduxForm, reset } from 'redux-form';
 import { FormGroup, FormControl } from 'react-bootstrap'
@@ -57,24 +57,24 @@ const validate = values => {
     return errors
 }
 
-class EditPost extends Component {
+class EditComment extends Component {
   state = {
-    editPostModal: false
+    editCommentModal: false
   }
 
-    openEditPostModal = () => {
-      this.props.initialize(this.props.post);
-      this.setState(() => ({ editPostModal: true }))
+    openEditCommentModal = () => {
+      this.props.initialize(this.props.comment);
+      this.setState(() => ({ editCommentModal: true }))
     }
-    closeEditPostModal = () => this.setState(() => ({ editPostModal: false }))
+    closeEditCommentModal = () => this.setState(() => ({ editCommentModal: false }))
 
     componentWillMount() {
         // this.props.getCategories();
     }
 
-    editPostForm = (post) => {
+    editCommentForm = (comment) => {
         console.log("<><>")
-        console.log(post)
+        console.log(comment)
         /*const uid = shortid.generate();
         const newPost = {
           id: uid,
@@ -84,9 +84,9 @@ class EditPost extends Component {
           category: post.category,
           timestamp: Date.now()
         }*/
-        this.props.editPost(post)
-        this.props.resetPost()
-        this.closeEditPostModal()
+        this.props.editComment(comment)
+        this.props.resetComment()
+        this.closeEditCommentModal()
       }
 
       renderInput(values) {
@@ -109,8 +109,8 @@ class EditPost extends Component {
       }
 
   render() {
-    const { editPostModal } = this.state
-    const { handleSubmit, post } = this.props
+    const { editCommentModal } = this.state
+    const { handleSubmit, comment } = this.props
   //  console.log(post)
 
     Modal.setAppElement('body')
@@ -118,22 +118,22 @@ class EditPost extends Component {
      <div>
         <Modal
             overlayClassName='overlay'
-            isOpen={editPostModal}
+            isOpen={editCommentModal}
             style={customStyleModal}
-            onRequestClose={this.closeEditPostModal}
+            onRequestClose={this.closeEditCommentModal}
             contentLabel='Modal'
             >
-             <form id="postForm" onSubmit={handleSubmit(this.editPostForm.bind(this))}>
-                <Field
-                      label="Title:"
-                      name="title"
-                      placeholder="Post title"
-                      component={this.renderInput}
-                />
+             <form id="commentForm" onSubmit={handleSubmit(this.editCommentForm.bind(this))}>
                 <Field
                       label="Description:"
                       name="body"
                       placeholder="Description content"
+                      component={this.renderInput}
+                />
+                <Field
+                      label="Author:"
+                      name="author"
+                      placeholder="Author Name"
                       component={this.renderInput}
                 />
                 <button type="submit" className="btn btn-success">Submit</button>
@@ -141,7 +141,7 @@ class EditPost extends Component {
         </Modal>
 
         <div>
-          <button onClick={this.openEditPostModal} className="btn btn-success">Submit</button>
+          <button onClick={this.openEditCommentModal} className="btn btn-success">Submit</button>
         </div>
     </div>
     )
@@ -153,15 +153,15 @@ const mapStateToProps = (state, single) => {
   }
 
 const mapDispatchToProps = (dispatch) => {
-    return { editPost:    (post)     => dispatch(editPost(post)),
-             resetPost:     ()         => dispatch(reset('editPostForm'))
+    return { editComment:    (comment)     => dispatch(editComment(comment)),
+             resetComment:     ()         => dispatch(reset('editCommentForm'))
            }
 }
 
-EditPost = connect(mapStateToProps, mapDispatchToProps)(EditPost);
+EditComment = connect(mapStateToProps, mapDispatchToProps)(EditComment);
 
 export default reduxForm({
     validate,
-    form: 'editPostForm',
+    form: 'editCommentForm',
     destroyOnUnmount: false,
-})(EditPost)
+})(EditComment)

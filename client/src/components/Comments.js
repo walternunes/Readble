@@ -1,7 +1,7 @@
 //import PropTypes from 'prop-types'
 import React, { Component } from 'react';
 import NewPost from './NewPost.js'
-import EditPost from './EditPost.js'
+import EditComment from './EditComment.js'
 import { getPost, getComments, voteComment, deleteComment } from '../dispatches/CategoryDispatcher.js';
 import { connect } from 'react-redux';
 import Timestamp from 'react-timestamp';
@@ -56,7 +56,7 @@ class PostDetail extends Component {
             </div>
           </div>
           <div className="fixedContainer">
-              <EditPost post={comment}/>
+              <EditComment comment={comment}/>
               <button onClick={() => deleteComment(comment.id)} className="btn btn-success">Delete</button>
           </div>
         </Row>
