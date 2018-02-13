@@ -6,6 +6,7 @@ import Comments from './Comments.js'
 import { getPost, getComments, votePost, deletePost } from '../dispatches/CategoryDispatcher.js';
 import { connect } from 'react-redux';
 import Timestamp from 'react-timestamp';
+import { Redirect } from 'react-router-dom'
 import { Col, Row } from 'react-bootstrap'
 
 class PostDetail extends Component {
@@ -21,7 +22,9 @@ class PostDetail extends Component {
   render() {
     const { deletePost, posts, votePost, comments } = this.props
     const post = posts[0] || {}
-    return (
+
+    if (!post.id) return (<Redirect to={{ pathname: '/'}}/> )
+    else return (
       <Col sm={12}>
         <NewPost/>
 

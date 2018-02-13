@@ -19,7 +19,7 @@ class App extends Component {
         <Route exact path='/' render={(props) => (
             <Row className="content">
               <Categories/>
-              <Posts/>
+              <Posts />
             </Row>
         )}/>
         <Route exact path='/:category/:id' render={(props) => (

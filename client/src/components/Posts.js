@@ -12,20 +12,20 @@ class Posts extends Component {
       posts: [],
   }
 
+  getCurrentCategory() {
+    if(this.props.match && this.props.match.params){
+      return this.props.match.params.category
+    } else {
+      return "all"
+    }
+  }
 
   componentWillMount() {
-    if(this.props.match && this.props.match.params){
-      this.props.getPosts(this.props.match.params.category);
-    } else {
-      this.props.getPosts('all');
-    }
+      this.props.getPosts(this.getCurrentCategory());
   }
 
   render() {
     const { deletePost, posts, votePost } = this.props
-    const Timestamp = require('react-timestamp');
-    console.log(posts)
-    console.log(new Date(1467166872634).toLocaleString())
     return (
       <Col sm={9}>
         <NewPost/>
