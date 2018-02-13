@@ -3,3 +3,256 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.App {
+  text-align: left;
+  background-color: #f1f1f1;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  text-align: center;
+  background-color: #222;
+  height: 75px;
+  padding-top: 10px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.button-add-post {
+  text-align: right;
+  height: 40px;
+  padding-top: 5px;
+}
+
+.categories-box {
+  text-align: center;
+  padding-top: 10px;
+}
+.button-add-comment {
+  text-align: right;
+  padding-bottom: 10px
+}
+
+.button-add-modal {
+  text-align: right;
+  padding-bottom: 10px
+}
+
+.button-add-modal-left {
+  margin-left: 10px
+}
+.button-add-comment-span{
+  text-align: left;
+  font-size: 18px;
+  display: inline-block;
+}
+
+.select-sort {
+  margin-top: 5px;
+  text-align: left;
+}
+ .container-fluid {
+   width: 80%;
+ }
+ .icon {
+   background-position: center;
+   background-repeat: no-repeat;
+   font-size: 0;
+   height: 30px;
+   width: 50px;
+ }
+
+ .edit-icon {
+   background-image: url('./icons/edit.png');
+ }
+
+ .delete-icon {
+   background-image: url('./icons/delete.png');
+ }
+
+ .list-item-box {
+ background-color: #fff;
+   padding: 10px;
+   margin-bottom: 10px;
+   position: relative;
+ }
+
+ .list-item-box-comments {
+  background-color: #fff;
+    padding-left: 10px;
+    position: relative;
+  }
+
+ .list-item-body-box {
+   padding-left: 10px;
+   text-align: left;
+   margin-left: 20px;
+ }
+
+ .fixedContainerDelete {
+   position: absolute;
+   bottom: 35px;
+   cursor: pointer;
+   right: 5px;
+ }
+
+ .fixedContainerDelete-Detail {
+   position: absolute;
+   bottom: 100px;
+   cursor: pointer;
+   right: 5px;
+ }
+
+ .fixedContainer {
+   position: absolute;
+   cursor: pointer;
+   bottom: 0px;
+   right: 0px;
+ }
+
+ .fixedContainer-Detail {
+     position: absolute;
+     cursor: pointer;
+   bottom: 10px;
+   right: 0px;
+ }
+
+ .list-item-body-summary {
+   font-weight: bold;
+   font-size: 1.150em;
+   line-height: 1.35em;
+   display: block;
+ }
+
+ .list-item-body-author {
+   margin-top: 5px;
+ }
+
+ .list-item-body-author-text {
+   font-weight: bold;
+   font-size: 0.95em;
+ }
+
+ .list-item-body-description {
+  margin-top: 10px;
+}
+
+.list-item-body-description-text {
+  font-size: 0.9em;
+}
+
+ .list-item-vote-box {
+   float: left;
+   background-color: #f1f1f1;
+   margin-right: 10px;
+ }
+
+ .list-item-vote-count {
+   display: block;
+ }
+
+ .list-item-vote-answer {
+     font-size: 12px;
+   text-align: center;
+   clear: both;
+   float: left;
+   width: 100%;
+   height: auto;
+   margin: 6px 0 -4px;
+   word-break: break-word;
+   background-color: #fff;
+ }
+
+
+ .list-item-vote-arrows {
+     float: left;
+   height: 60px;
+   width: 20px;
+   position: relative;
+ }
+
+ .list-item-vote-text {
+   display: block;
+   text-align: center;
+   width: 68px;
+   height: 60px;
+   line-height: 0.5;
+   float: left;
+ }
+
+ .list-item-vote-text-number {
+   font-size: 24px;
+   line-height: 40px;
+   display: block;
+   white-space: nowrap;
+ }
+
+ .list-item-vote-text-number-text {
+   font-size: 12px;
+ }
+
+ .row.list-item-box {
+   margin-left: 0px;
+   margin-right: 0px;
+   margin-top: 10px;
+ }
+
+ .list-item-vote-arrows-up, .list-item-vote-arrows-down {
+   text-indent: -9999px;
+   background: url('icons/vote-buttons.png');
+   background-repeat: no-repeat;
+   width: 16px;
+   height: 10px;
+   border: none;
+   margin: 0;
+   padding: 0;
+   position: absolute;
+   left: 4px;
+   -webkit-transition: all 0s;
+   transition: all 0s;
+ }
+
+ .list-item-vote-arrows-up {
+  background-position: 0 0;
+  top: 10px;
+}
+
+.list-item-vote-arrows-down {
+  background-position: -16px 0;
+  bottom: 10px;
+}
+
+   /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+   .row.content {height: 1500px}
+
+   /* Set gray background color and 100% height */
+   .sidenav {
+     background-color: #fff;
+     height: auto;
+     margin-top: 10px;
+   }
+
+
+   /* On small screens, set height to 'auto' for sidenav and grid */
+   @media screen and (max-width: 767px) {
+     .sidenav {
+       height: auto;
+       padding: 15px;
+     }
+     .row.content {height: 1500px;}
+   .container-fluid {
+    width: 100%;
+   }
+ }

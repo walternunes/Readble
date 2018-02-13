@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import Categories from './components/Categories.js'
-import Posts from './components/Posts.js'
-import Comments from './components/Comments.js'
-import PostDetail from './components/PostDetail.js'
+import Categories from './Categories'
+import Posts from './Posts'
+import Comments from './Comments'
+import PostDetail from './PostDetail'
 import { Route } from 'react-router-dom'
 import { Row, Grid } from 'react-bootstrap'
-import './App.css';
 
 class App extends Component {
   render() {
