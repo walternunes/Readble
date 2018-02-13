@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import NewPost from './NewPost.js'
 import EditPost from './EditPost.js'
-import { getPosts, votePost, deletePost } from '../actions/';
+import { getPosts, votePost, deletePost, setPostSort } from '../actions/';
 import { connect } from 'react-redux';
 import { Col, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
@@ -10,7 +10,10 @@ import { Link } from 'react-router-dom';
 class Posts extends Component {
   state = {
       posts: [],
+      sort: {}
   }
+
+
 
   getCurrentCategory() {
     if(this.props.match && this.props.match.params){
@@ -21,16 +24,42 @@ class Posts extends Component {
   }
 
   componentWillMount() {
+      this.props.setPostSort("byVote")
       this.props.getPosts(this.getCurrentCategory());
   }
 
+
   render() {
-    const { deletePost, posts, votePost } = this.props
+    const { deletePost, posts, sort, votePost, setPostSort } = this.props
+    const sortPosts = () => {
+          switch (sort) {
+            case "byVote" :
+                return posts.sort((a, b) => (b.voteScore-a.voteScore))
+            case "byDate" :
+                return posts.sort((a, b) => (b.timestamp-a.timestamp))
+            default :
+              return posts
+
+          }
+        }
     return (
       <Col sm={9}>
-        <NewPost/>
+      <Row>
 
-      {posts.length > 0 && posts.map((post, index) => (
+        <Col sm={3}>
+        <div className="form-inline select-sort">
+          <label htmlFor="sortBySelect">SortBy:</label>
+          <select onChange={event => setPostSort(event.target.value)} className="form-control" id="sortBySelect">
+            <option value='byVote'>Vote</option>
+            <option value='byDate'>Date</option>
+          </select>
+        </div>
+        </Col>
+        <Col sm={9}>
+          <NewPost/>
+          </Col>
+      </Row>
+      {posts.length > 0 && sortPosts().map((post, index) => (
         <Row className="list-item-box" key={index}>
           <div className="list-item-vote-box">
             <div className="list-item-vote-count">
@@ -76,7 +105,8 @@ class Posts extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    posts: state.posts
+    posts: state.posts,
+    sort: state.sort
   }
 }
 
@@ -84,6 +114,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
         getPosts: (category) => dispatch(getPosts(category)),
         votePost: (postId, vote) => dispatch(votePost(postId, vote)),
+        setPostSort: (orderBy) => dispatch(setPostSort(orderBy)),
         deletePost: (id) => dispatch(deletePost(id))
   }
 }

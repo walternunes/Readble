@@ -52,9 +52,10 @@
   font-size: 18px;
   display: inline-block;
 }
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+
+.select-sort {
+  margin-top: 5px;
+  text-align: left;
 }
  .container-fluid {
    width: 80%;

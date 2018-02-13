@@ -12,6 +12,7 @@ export const VOTE_COMMENT = 'vote_comment';
 export const DELETE_COMMENT = 'delete_comment';
 export const CREATE_COMMENT = 'create_comment';
 export const EDIT_COMMENT = 'edit_comment';
+export const SORT_BY = 'sort_by'
 
 
 const AUTH_HEADERS = { 'Authorization': 'whatever-you-want', 'Accept': 'application/json', };
@@ -95,6 +96,14 @@ export function createComment(values) {
             });
     }
   }
+
+  export const setPostSort = (sortBy) => {
+    console.log("action sort" + sortBy)
+  return {
+    type: SORT_BY,
+    sortBy
+  }
+}
 
 export function editPost(values) {
   return dispatch => {
