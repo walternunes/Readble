@@ -1,6 +1,6 @@
 //import PropTypes from 'prop-types'
 import React, { Component } from 'react';
-import { getCategories, getPosts } from '../dispatches/CategoryDispatcher.js';
+import { getCategories, getPosts } from '../actions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { Col, ListGroupItem, ListGroup } from 'react-bootstrap'

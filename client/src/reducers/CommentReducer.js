@@ -1,6 +1,6 @@
 import {
     GET_COMMENTS, VOTE_COMMENT, DELETE_COMMENT, CREATE_COMMENT, EDIT_COMMENT
-} from '../dispatches/CategoryDispatcher.js'; 
+} from '../actions/'; 
 const INITIAL_STATE = {};
 
 export default function (state = INITIAL_STATE, action) {

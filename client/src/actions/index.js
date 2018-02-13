@@ -87,7 +87,7 @@ export function createComment(values) {
         body,
         author
     }
-  
+
     return dispatch => {
         axios.post(`http://localhost:3001/comments/`, data)
             .then(res => {
@@ -106,13 +106,13 @@ export function editPost(values) {
 }
 
 export function editComment(values) {
-  
+
     return dispatch => {
         axios.put(`http://localhost:3001/comments/${values.id}`, values)
             .then(res => {
                 dispatch({ type: EDIT_COMMENT, comments: res.data })
             });
-        
+
     }
 }
 

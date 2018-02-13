@@ -5,7 +5,7 @@ import {
     CREATE_POST,
     EDIT_POST,
     DELETE_POST
-} from '../dispatches/CategoryDispatcher.js';
+} from '../actions/';
 const INITIAL_STATE = {};
 
 export default function (state = INITIAL_STATE, action) {

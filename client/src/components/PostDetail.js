@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import NewPost from './NewPost.js'
 import EditPost from './EditPost.js'
 import Comments from './Comments.js'
-import { getPost, getComments, votePost, deletePost } from '../dispatches/CategoryDispatcher.js';
+import { getPost, getComments, votePost, deletePost } from '../actions/';
 import { connect } from 'react-redux';
 import Timestamp from 'react-timestamp';
 import { Redirect } from 'react-router-dom'

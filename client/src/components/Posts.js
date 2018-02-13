@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import NewPost from './NewPost.js'
 import EditPost from './EditPost.js'
-import { getPosts, votePost, deletePost } from '../dispatches/CategoryDispatcher.js';
+import { getPosts, votePost, deletePost } from '../actions/';
 import { connect } from 'react-redux';
 import { Col, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom';

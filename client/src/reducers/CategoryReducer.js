@@ -1,6 +1,6 @@
 import {
     GET_CATEGORIES,
-} from '../dispatches/CategoryDispatcher.js';
+} from '../actions/';
 const INITIAL_STATE = {};
 
 export default function (state = INITIAL_STATE, action) {

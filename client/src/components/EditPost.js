@@ -1,6 +1,6 @@
 //import PropTypes from 'prop-types'
 import React, { Component } from 'react';
-import { getCategories, editPost } from '../dispatches/CategoryDispatcher.js';
+import { getCategories, editPost } from '../actions/';
 import { connect } from 'react-redux';
 import { Field, reduxForm, reset } from 'redux-form';
 import { FormGroup, FormControl } from 'react-bootstrap'
