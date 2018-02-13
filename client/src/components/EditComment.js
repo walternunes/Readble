@@ -105,10 +105,7 @@ class EditComment extends Component {
                 </div>
             </form>
         </Modal>
-
-        <div>
-          <button onClick={this.openEditCommentModal} className="btn btn-warning">Edit</button>
-        </div>
+          <div className="edit-icon icon" onClick={this.openEditCommentModal}></div>
     </div>
     )
   }

@@ -30,6 +30,10 @@
   padding-top: 5px;
 }
 
+.categories-box {
+  text-align: center;
+  padding-top: 10px;
+}
 .button-add-comment {
   text-align: right;
   padding-bottom: 10px
@@ -71,10 +75,6 @@
    background-image: url('./icons/delete.png');
  }
 
- .list-group-item {
-  text-align: center;
- }
-
  .list-item-box {
  background-color: #fff;
    padding: 10px;
@@ -109,15 +109,17 @@
  }
 
  .fixedContainer {
-     position: absolute;
+   position: absolute;
+   cursor: pointer;
    bottom: 0px;
-   right: 10px;
+   right: 0px;
  }
 
  .fixedContainer-Detail {
      position: absolute;
+     cursor: pointer;
    bottom: 10px;
-   right: 10px;
+   right: 0px;
  }
 
  .list-item-body-summary {

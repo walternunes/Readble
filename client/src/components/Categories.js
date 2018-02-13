@@ -14,7 +14,7 @@ class Categories extends Component {
   render() {
     const { categories, getPosts } = this.props
     return (
-      <Col sm={3}>
+      <Col sm={3} className='categories-box'>
         <h4>Categories</h4>
         <ListGroup >
           {categories.length > 0 && categories.map((category, index) => (

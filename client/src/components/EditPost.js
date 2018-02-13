@@ -101,14 +101,11 @@ class EditPost extends Component {
                 />
                 <div className="button-add-modal">
                   <button className='btn btn-danger' onClick={this.closeEditPostModal}>Close</button>
-                  <button type="submit" className="btn btn-warning button-add-modal-left">Save</button>
+                  <button type="submit" className="btn btn-success button-add-modal-left">Save</button>
                 </div>
             </form>
         </Modal>
-
-        <div>
-          <button onClick={this.openEditPostModal} className="btn btn-warning">Submit</button>
-        </div>
+        <div className="edit-icon icon" onClick={this.openEditPostModal}></div>
     </div>
     )
   }

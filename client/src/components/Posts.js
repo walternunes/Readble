@@ -60,9 +60,12 @@ class Posts extends Component {
             </div>
 
           </div>
-          <div className="fixedContainer">
+          <div className="fixedContainerDelete-Detail">
+              <div className="delete-icon icon" onClick={() => deletePost(post.id)}></div>
+          </div>
+
+          <div className="fixedContainer-Detail">
               <EditPost post={post}/>
-              <button onClick={() => deletePost(post.id)} className="btn btn-success">D</button>
           </div>
         </Row>
       ))}
