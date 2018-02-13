@@ -9,8 +9,6 @@ import {
 const INITIAL_STATE = {};
 
 export default function (state = INITIAL_STATE, action) {
-  //console.log("allposts")
-  //console.log(action);
     switch (action.type) {
         case GET_POST:
                 return [action.posts]
@@ -24,12 +22,10 @@ export default function (state = INITIAL_STATE, action) {
                        action.posts
                    ];
        case EDIT_POST:
-          console.log(action)
                    return state.map((post) => post.id === action.posts.id
             ? {...post, title: action.posts.title, body:action.posts.body}
             : post)
       case DELETE_POST:
-          console.log("delete")
           return state.filter((post) => post.id !== action.posts.id)
         default:
             return state;

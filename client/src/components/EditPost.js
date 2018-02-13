@@ -1,10 +1,9 @@
 //import PropTypes from 'prop-types'
 import React, { Component } from 'react';
-import { getCategories, editPost } from '../actions/';
+import { editPost } from '../actions/';
 import { connect } from 'react-redux';
 import { Field, reduxForm, reset } from 'redux-form';
-import { FormGroup, FormControl } from 'react-bootstrap'
-import shortid from 'shortid'
+import { FormGroup } from 'react-bootstrap'
 import Modal from 'react-modal'
 import { customSmallStyleModal } from '../style'
 
@@ -73,7 +72,7 @@ class EditPost extends Component {
 
   render() {
     const { editPostModal } = this.state
-    const { handleSubmit, post } = this.props
+    const { handleSubmit } = this.props
 
     Modal.setAppElement('body')
     return (

@@ -1,15 +1,13 @@
 //import PropTypes from 'prop-types'
 import React, { Component } from 'react';
-import { getCategories, createComment} from '../actions/';
+import { createComment} from '../actions/';
 import { connect } from 'react-redux';
 import { Field, reduxForm, reset } from 'redux-form';
-import { FormGroup, FormControl } from 'react-bootstrap'
+import { FormGroup } from 'react-bootstrap'
 import shortid from 'shortid'
 import Modal from 'react-modal'
 import { Col, Row } from 'react-bootstrap'
 import { customSmallStyleModal } from '../style'
-
-
 
 const validate = values => {
 
@@ -72,7 +70,7 @@ class NewComment extends Component {
 
   render() {
     const { newCommentModal } = this.state
-    const { handleSubmit, categories } = this.props
+    const { handleSubmit } = this.props
 
     Modal.setAppElement('body')
     return (

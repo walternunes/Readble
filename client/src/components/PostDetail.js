@@ -2,10 +2,8 @@
 import React, { Component } from 'react';
 import NewPost from './NewPost.js'
 import EditPost from './EditPost.js'
-import Comments from './Comments.js'
-import { getPost, getComments, votePost, deletePost } from '../actions/';
+import { getPost, votePost, deletePost } from '../actions/';
 import { connect } from 'react-redux';
-import Timestamp from 'react-timestamp';
 import { Redirect } from 'react-router-dom'
 import { Col, Row } from 'react-bootstrap'
 
@@ -20,7 +18,7 @@ class PostDetail extends Component {
   }
 
   render() {
-    const { deletePost, posts, votePost, comments } = this.props
+    const { deletePost, posts, votePost } = this.props
     const post = posts[0] || {}
 
     if (!post.id) return (<Redirect to={{ pathname: '/'}}/> )

@@ -31,13 +31,11 @@ export function getPosts(category) {
     return dispatch => {
       axios.get(`http://localhost:3001/posts`)
           .then(res => dispatch({ type: GET_ALL_POSTS, posts: res.data }))
-          .catch(error => console.log(error))
     }
   } else {
     return dispatch => {
       axios.get(`http://localhost:3001/${category}/posts`)
           .then(res => dispatch({ type: GET_ALL_POSTS, posts: res.data }))
-          .catch(error => console.log(error))
     }
   }
 }
@@ -58,7 +56,6 @@ export function voteComment(commentId, vote) {
 
 export function createPost(values) {
   const { title, body, author, category } = values;
-  console.log(values)
   const data = {
       id: Date.now(),
       timestamp: Date.now(),
@@ -79,8 +76,6 @@ export function createPost(values) {
 
 export function createComment(values) {
     const { parentId, body, author } = values;
-    console.log("create comment")
-    console.log(values)
     const data = {
         id: Date.now(),
         timestamp: Date.now(),
@@ -98,7 +93,6 @@ export function createComment(values) {
   }
 
   export const setPostSort = (sortBy) => {
-    console.log("action sort" + sortBy)
   return {
     type: SORT_BY,
     sortBy

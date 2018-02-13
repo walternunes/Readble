@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { getCategories, createPost} from '../actions/';
 import { connect } from 'react-redux';
 import { Field, reduxForm, reset } from 'redux-form';
-import { FormGroup, FormControl } from 'react-bootstrap'
+import { FormGroup } from 'react-bootstrap'
 import shortid from 'shortid'
 import Modal from 'react-modal'
 import { customLargeStyleModal } from '../style'
@@ -93,7 +93,7 @@ class NewPost extends Component {
               <select className="form-control" { ...values.input }>
                 <option value="" defaultValue> Please select a category </option>
                 {values.categories.length > 0 && values.categories.map((category, index) => (
-                    category.name != "all" &&
+                    category.name !== "all" &&
                         <option
                             key={index}
                             value={category.name} >
