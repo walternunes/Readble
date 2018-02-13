@@ -6,7 +6,7 @@ import { Field, reduxForm, reset } from 'redux-form';
 import { FormGroup, FormControl } from 'react-bootstrap'
 import shortid from 'shortid'
 import Modal from 'react-modal'
-import { customStyleModal } from '../style'
+import { customPostStyleModal } from '../style'
 
 const validate = values => {
 
@@ -47,17 +47,6 @@ class EditPost extends Component {
     }
 
     editPostForm = (post) => {
-        console.log("<><>")
-        console.log(post)
-        /*const uid = shortid.generate();
-        const newPost = {
-          id: uid,
-          title: post.title,
-          body: post.description,
-          author: post.author,
-          category: post.category,
-          timestamp: Date.now()
-        }*/
         this.props.editPost(post)
         this.props.resetPost()
         this.closeEditPostModal()
@@ -85,7 +74,6 @@ class EditPost extends Component {
   render() {
     const { editPostModal } = this.state
     const { handleSubmit, post } = this.props
-  //  console.log(post)
 
     Modal.setAppElement('body')
     return (
@@ -93,10 +81,11 @@ class EditPost extends Component {
         <Modal
             overlayClassName='overlay'
             isOpen={editPostModal}
-            style={customStyleModal}
+            style={customPostStyleModal}
             onRequestClose={this.closeEditPostModal}
             contentLabel='Modal'
             >
+            <h4>Edit Post </h4>
              <form id="postForm" onSubmit={handleSubmit(this.editPostForm.bind(this))}>
                 <Field
                       label="Title:"
@@ -110,7 +99,10 @@ class EditPost extends Component {
                       placeholder="Description content"
                       component={this.renderInput}
                 />
-                <button type="submit" className="btn btn-success">Submit</button>
+                <div className="button-add-modal">
+                  <button className='btn btn-danger' onClick={this.closeEditPostModal}>Close</button>
+                  <button type="submit" className="btn btn-success button-add-modal-left">Submit</button>
+                </div>
             </form>
         </Modal>
 

@@ -7,7 +7,7 @@ import { FormGroup, FormControl } from 'react-bootstrap'
 import shortid from 'shortid'
 import Modal from 'react-modal'
 import { Col, Row } from 'react-bootstrap'
-import { customStyleModal } from '../style'
+import { customCommentStyleModal } from '../style'
 
 
 
@@ -80,10 +80,11 @@ class NewComment extends Component {
         <Modal
             overlayClassName='overlay'
             isOpen={newCommentModal}
-            style={customStyleModal}
+            style={customCommentStyleModal}
             onRequestClose={this.closeNewCommentModal}
             contentLabel='Modal'
             >
+            <h4>New Comment </h4>
              <form id="commentForm" onSubmit={handleSubmit(this.commentForm.bind(this))}>
                 <Field
                       label="Description:"
@@ -97,7 +98,10 @@ class NewComment extends Component {
                       placeholder="Author Name"
                       component={this.renderInput}
                 />
-                <button type="submit" className="btn btn-success">Submit</button>
+                <div className="button-add-modal">
+                  <button className='btn btn-danger' onClick={this.closeNewCommentModal}>Close</button>
+                  <button type="submit" className="btn btn-success button-add-modal-left">Submit</button>
+                </div>
             </form>
         </Modal>
 

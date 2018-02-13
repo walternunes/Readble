@@ -35,6 +35,14 @@
   padding-bottom: 10px
 }
 
+.button-add-modal {
+  text-align: right;
+  padding-bottom: 10px
+}
+
+.button-add-modal-left {
+  margin-left: 10px
+}
 .button-add-comment-span{
   text-align: left;
   font-size: 18px;

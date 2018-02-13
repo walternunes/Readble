@@ -6,7 +6,7 @@ import { Field, reduxForm, reset } from 'redux-form';
 import { FormGroup, FormControl } from 'react-bootstrap'
 import shortid from 'shortid'
 import Modal from 'react-modal'
-import { customStyleModal } from '../style'
+import { customCommentStyleModal } from '../style'
 
 const validate = values => {
 
@@ -81,10 +81,11 @@ class EditComment extends Component {
         <Modal
             overlayClassName='overlay'
             isOpen={editCommentModal}
-            style={customStyleModal}
+            style={customCommentStyleModal}
             onRequestClose={this.closeEditCommentModal}
             contentLabel='Modal'
             >
+             <h4>Edit Comment </h4>
              <form id="commentForm" onSubmit={handleSubmit(this.editCommentForm.bind(this))}>
                 <Field
                       label="Description:"
@@ -98,7 +99,10 @@ class EditComment extends Component {
                       placeholder="Author Name"
                       component={this.renderInput}
                 />
-                <button type="submit" className="btn btn-success">Submit</button>
+                <div className="button-add-modal">
+                  <button className='btn btn-danger' onClick={this.closeEditCommentModal}>Close</button>
+                  <button type="submit" className="btn btn-success button-add-modal-left">Submit</button>
+                </div>
             </form>
         </Modal>
 
