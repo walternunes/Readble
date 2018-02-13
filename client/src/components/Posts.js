@@ -5,6 +5,7 @@ import EditPost from './EditPost.js'
 import { getPosts, votePost, deletePost } from '../dispatches/CategoryDispatcher.js';
 import { connect } from 'react-redux';
 import { Col, Row } from 'react-bootstrap'
+import { Link } from 'react-router-dom';
 
 class Posts extends Component {
   state = {
@@ -52,16 +53,16 @@ class Posts extends Component {
           </div>
           <div className="list-item-body-box">
             <div className="list-item-body-summary">
-              <a href=""><span>{post.title} </span></a>
+              <Link to={`/${post.category}/${post.id}`}><span>{post.title} </span></Link>
             </div>
             <div className="list-item-body-author">
-              <span className="glyphicon glyphicon-time"></span><span className="list-item-body-author-text"> Post by {post.author} at {new Date(1467166872634).toLocaleString()}</span>
+              <span className="glyphicon glyphicon-time"></span><span className="list-item-body-author-text"> Post by {post.author} at {new Date(post.timestamp).toLocaleString()}</span>
             </div>
 
           </div>
           <div className="fixedContainer">
               <EditPost post={post}/>
-              <button onClick={() => deletePost(post.id)} className="btn btn-success">Delete</button>
+              <button onClick={() => deletePost(post.id)} className="btn btn-success">D</button>
           </div>
         </Row>
       ))}

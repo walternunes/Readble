@@ -177,8 +177,9 @@ class NewPost extends Component {
             </form>
         </Modal>
 
-        <div>
-          <button onClick={this.openNewPostModal} className="btn btn-success">Submit</button>
+
+        <div className='button-add-post'>
+          <button onClick={this.openNewPostModal} className="btn btn-primary">Add Post</button>
         </div>
     </div>
     )

@@ -26,7 +26,6 @@ class PostDetail extends Component {
     return (
       <Col sm={12}>
         <NewComment parentId={this.props.match.params.id} />
-        { postComments.length > 0 && <h4>Comments</h4>}
         <ListGroup >
           {postComments.length > 0 && postComments.map((comment, index) => (
               <ListGroupItem key={index}>
@@ -45,11 +44,8 @@ class PostDetail extends Component {
             </div>
           </div>
           <div className="list-item-body-box">
-            <div className="list-item-body-summary">
-              <a href=""><span>{comment.title} </span></a>
-            </div>
             <div className="list-item-body-author">
-              <span className="glyphicon glyphicon-time"></span><span className="list-item-body-author-text"> Comment by {comment.author} at {new Date(1467166872634).toLocaleString()}</span>
+              <span className="glyphicon glyphicon-time"></span><span className="list-item-body-author-text"> Comment by {comment.author} at {new Date(comment.timestamp).toLocaleString()}</span>
             </div>
             <div className="list-item-body-description">
                 <span className="list-item-body-description-text">{comment.body}</span>

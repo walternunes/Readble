@@ -6,6 +6,7 @@ import { Field, reduxForm, reset } from 'redux-form';
 import { FormGroup, FormControl } from 'react-bootstrap'
 import shortid from 'shortid'
 import Modal from 'react-modal'
+import { Col, Row } from 'react-bootstrap'
 
 
 const customStyleModal = {
@@ -37,10 +38,6 @@ const customStyleModal = {
 const validate = values => {
 
     const errors = {};
-
-    if (!values.title) {
-        errors.title = true
-    }
 
     if (!values.description) {
         errors.description = true
@@ -128,9 +125,15 @@ class NewComment extends Component {
             </form>
         </Modal>
 
-        <div>
-          <button onClick={this.openNewCommentModal} className="btn btn-success">Submit</button>
-        </div>
+
+        <Row>
+          <Col sm={6} >
+            <h4> Comments </h4>
+          </Col>
+          <Col sm={6} className='button-add-comment'>
+            <button onClick={this.openNewCommentModal} className="btn btn-primary">Add Comment</button>
+          </Col>
+        </Row>
     </div>
     )
   }

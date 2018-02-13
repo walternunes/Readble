@@ -48,7 +48,7 @@ class PostDetail extends Component {
             </div>
             <div className="list-item-body-box">
               <div className="list-item-body-summary">
-                <a href=""><span>{post.title} </span></a>
+                <span>{post.title} </span>
               </div>
               <div className="list-item-body-author">
                 <span className="glyphicon glyphicon-time"></span><span className="list-item-body-author-text"> Post by {post.author} at {new Date(1467166872634).toLocaleString()} </span>
