@@ -1,4 +1,4 @@
-export const customPostStyleModal = {
+export const customLargeStyleModal = {
   overlay : {
     position          : 'fixed',
     top               : 0,
@@ -24,7 +24,7 @@ export const customPostStyleModal = {
   }
 }
 
-export const customCommentStyleModal = {
+export const customSmallStyleModal = {
   overlay : {
     position          : 'fixed',
     top               : 0,

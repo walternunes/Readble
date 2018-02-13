@@ -57,9 +57,11 @@ class PostDetail extends Component {
                 <span className="list-item-body-description-text">{post.body}</span>
               </div>
             </div>
-            <div className="fixedContainer">
+            <div className="fixedContainerDelete-Detail">
+                <div className="delete-icon icon" onClick={() => deletePost(post.id)}></div>
+            </div>
+            <div className="fixedContainer-Detail">
                 <EditPost post={post}/>
-                <button onClick={() => deletePost(post.id)} className="btn btn-success">Delete</button>
             </div>
           </Row>
         }

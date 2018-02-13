@@ -6,7 +6,7 @@ import { Field, reduxForm, reset } from 'redux-form';
 import { FormGroup, FormControl } from 'react-bootstrap'
 import shortid from 'shortid'
 import Modal from 'react-modal'
-import { customPostStyleModal } from '../style'
+import { customLargeStyleModal } from '../style'
 
 const validate = values => {
 
@@ -117,7 +117,7 @@ class NewPost extends Component {
         <Modal
             overlayClassName='overlay'
             isOpen={newPostModal}
-            style={customPostStyleModal}
+            style={customLargeStyleModal}
             onRequestClose={this.closeNewPostModal}
             contentLabel='Modal'
             >
@@ -150,7 +150,7 @@ class NewPost extends Component {
                 />
                 <div className="button-add-modal">
                   <button className='btn btn-danger' onClick={this.closeNewPostModal}>Close</button>
-                  <button type="submit" className="btn btn-success button-add-modal-left">Submit</button>
+                  <button type="submit" className="btn btn-success button-add-modal-left">Save</button>
                 </div>
             </form>
         </Modal>

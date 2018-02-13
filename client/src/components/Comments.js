@@ -51,9 +51,11 @@ class PostDetail extends Component {
                 <span className="list-item-body-description-text">{comment.body}</span>
             </div>
           </div>
+          <div className="fixedContainerDelete">
+              <div className="delete-icon icon" onClick={() => deleteComment(comment.id)}></div>
+          </div>
           <div className="fixedContainer">
               <EditComment comment={comment}/>
-              <button onClick={() => deleteComment(comment.id)} className="btn btn-success">Delete</button>
           </div>
         </Row>
               </ListGroupItem>
