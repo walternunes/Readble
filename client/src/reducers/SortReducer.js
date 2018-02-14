@@ -1,15 +1,12 @@
-import  {
-    SORT_BY
-} from '../actions/';
+import  { SORT_BY } from '../actions/';
 
-const INITIAL_STATE = {sortType: 'byVote'};
-
-export default function (state = INITIAL_STATE, action) {
-
+export default function (state = {sortType: 'byVote'}, action) {
     switch (action.type) {
-        case SORT_BY:
-            return  action.sortBy
-        default:
-            return state;
+
+      case SORT_BY:
+        return  action.sortBy
+
+      default:
+        return state;
     }
 }
