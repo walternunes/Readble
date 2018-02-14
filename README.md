@@ -1,22 +1,17 @@
-# Readable API Server
+# RN-P2 Readble
+This project is part of React Nanodegree
 
-This is the starter project for the final assessment project for Udacity's Redux course where you will build a content and comment web app. Users will be able to post content to predefined categories, comment on their posts and other users' posts, and vote on posts and comments. Users will also be able to edit and delete posts and comments.
+### About
+Project 2: The idea of Readble project is to build a structure of content and comments which is common on a large number of websites, from news sites to blogs, through aggregators such as Hacker News and Reddit.
 
-This repository includes the code for the backend API Server that you'll use to develop and interact with the front-end portion of the project.
+### How to run the project
+* Clone the repo using ```git clone https://github.com/walternunes/Readble.git``` and ```cd``` into the folder
+* Enter in server folder typing ```cd server```
+* Install server dependecies typing ```npm install```
+* Run the server typing ```npm start```
 
-## Start Developing
-
-To get started developing right away:
-
-* Install and start the API server
-    - `cd api-server`
-    - `npm install`
-    - `node server`
-* In another terminal window, use Create React App to scaffold out the front-end
-    - `create-react-app frontend`
-    - `cd frontend`
-    - `npm start`
-
-## API Server
-
-Information about the API server and how to use it can be found in its [README file](api-server/README.md).
+* Open another console and access the folder where the project was cloned
+* Enter in client folder typing ```cd client```
+* Install client dependecies typing ```npm install```
+* Run the client typing ```npm start```
+* Access the page ```http://localhost:3000/```
