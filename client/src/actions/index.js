@@ -75,10 +75,13 @@ export function editPost(values) {
   }
 }
 
-export function deletePost(id) {
+export function deletePost(id, func = () => {}) {
+    console.log("callback")
+    console.log(func)
     return dispatch => {
       axios.delete(`${API_URL}posts/${id}`)
           .then(response => {
+                func();
               dispatch({type: DELETE_POST, posts: response.data});
           });
     }

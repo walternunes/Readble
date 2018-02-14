@@ -17,11 +17,9 @@ class PostDetail extends Component {
   }
 
   render() {
-    const { deletePost, posts, votePost } = this.props
+    const { posts, deletePost, votePost } = this.props
     const post = posts[0] || {}
-
-    if (!post.id) return (<Redirect to={{ pathname: '/'}}/> )
-    else return (
+    return (
       <Col sm={12}>
         <NewPost/>
 
@@ -57,7 +55,7 @@ class PostDetail extends Component {
               </div>
             </div>
             <div className="fixedContainerDelete-Detail">
-                <div className="delete-icon icon" onClick={() => deletePost(post.id)}></div>
+                <div className="delete-icon icon" onClick={() => deletePost(post.id, () => {this.props.history.push('/') })}></div>
             </div>
             <div className="fixedContainer-Detail">
                 <EditPost post={post}/>
@@ -78,8 +76,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-        deletePost: (id)           => dispatch(deletePost(id)),
         getPost:    (id)           => dispatch(getPost(id)),
+        deletePost: (id, func)     => dispatch(deletePost(id, func)),
         votePost:   (postId, vote) => dispatch(votePost(postId, vote))
   }
 }
