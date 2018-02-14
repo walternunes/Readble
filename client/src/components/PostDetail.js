@@ -18,6 +18,13 @@ class PostDetail extends Component {
   render() {
     const { posts, deletePost, votePost } = this.props
     const post = posts[0] || {}
+    if (!post.id) {
+      return (
+        <div>
+          <h2 > Post not Found </h2>
+        </div>
+      )
+    } else {
     return (
       <Col sm={12}>
         <Row>
@@ -70,7 +77,7 @@ class PostDetail extends Component {
           </Row>
         }
     </Col>
-    )
+  )}
   }
 }
 

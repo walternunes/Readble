@@ -140,6 +140,7 @@ export function voteComment(commentId, vote) {
   }
 }
 
+/* Control post detail count comments actions */
 export const addCountComment = (id) => {
   return { type: ADD_COMMENT, id }
 }

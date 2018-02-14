@@ -23,14 +23,12 @@ export default function (state = {}, action) {
         return state.filter((post) => post.id !== action.posts.id)
 
       case ADD_COMMENT:
-        return state.map((post) => post.id === action.id
-        ?  {...post, commentCount: post.commentCount + 1}
-        : post)
+        return state.map((post) => post.id === action.id ?
+            {...post, commentCount: post.commentCount + 1} : post)
 
       case SUB_COMMENT:
-        return state.map((post) => post.id === action.id
-        ?  {...post, commentCount: post.commentCount - 1}
-        : post)
+        return state.map((post) => post.id === action.id ?
+            {...post, commentCount: post.commentCount - 1} : post)
 
       default:
         return state;

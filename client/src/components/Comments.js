@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { getComments, voteComment, deleteComment } from '../actions';
+import { getComments, getPost, voteComment, deleteComment } from '../actions';
 import { Col, Row, ListGroupItem, ListGroup } from 'react-bootstrap'
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import NewComment from './NewComment.js';
 import EditComment from './EditComment.js'
@@ -11,13 +12,21 @@ class PostDetail extends Component {
   }
 
   componentWillMount() {
+    this.props.getPost(this.props.match.params.id);
     this.props.getComments(this.props.match.params.id);
   }
 
   render() {
-    const { comments, voteComment, deleteComment } = this.props
+    const { comments, voteComment, deleteComment, posts } = this.props
     const postComments = comments[this.props.match.params.id] || []
-
+    const post = posts[0] || {}
+    if (!post.id) {
+      return (
+        <div>
+          <Link to='/'><h4 > Back to home page </h4></Link>
+        </div>
+      )
+    } else {
     return (
       <Col sm={12}>
         <NewComment parentId={this.props.match.params.id} />
@@ -57,19 +66,20 @@ class PostDetail extends Component {
         ))}
         </ListGroup>
       </Col>
-    )
+    )}
   }
 }
 
 const mapStateToProps = (state) => {
-  return { comments: state.comments }
+  return { comments: state.comments, posts: state.posts }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
         voteComment:   (commentId, vote) => dispatch(voteComment(commentId, vote)),
         deleteComment: (id, parentId)    => dispatch(deleteComment(id, parentId)),
-        getComments:   (id)              => dispatch(getComments(id))
+        getComments:   (id)              => dispatch(getComments(id)),
+        getPost:       (id)              => dispatch(getPost(id))
   }
 }
 
