@@ -1,17 +1,16 @@
 //import PropTypes from 'prop-types'
 import React, { Component } from 'react';
-import NewPost from './NewPost.js'
-import EditPost from './EditPost.js'
 import { getPost, votePost, deletePost } from '../actions/';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom'
 import { Col, Row } from 'react-bootstrap'
+import NewPost from './NewPost.js'
+import EditPost from './EditPost.js'
 
 class PostDetail extends Component {
   state = {
       posts: [],
   }
-
 
   componentWillMount() {
     this.props.getPost(this.props.match.params.id);
@@ -44,7 +43,6 @@ class PostDetail extends Component {
                 <h5><span className="label label-primary">{post.category}</span></h5>
                 <span>{post.commentCount}</span>
                 <span> comments</span>
-
               </div>
             </div>
             <div className="list-item-body-box">
@@ -75,15 +73,14 @@ const mapStateToProps = (state) => {
   return {
     comments: state.comments,
     posts: state.posts
-
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-        getPost: (id) => dispatch(getPost(id)),
-        votePost: (postId, vote) => dispatch(votePost(postId, vote)),
-        deletePost: (id) => dispatch(deletePost(id))
+        deletePost: (id)           => dispatch(deletePost(id)),
+        getPost:    (id)           => dispatch(getPost(id)),
+        votePost:   (postId, vote) => dispatch(votePost(postId, vote))
   }
 }
 

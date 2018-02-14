@@ -1,19 +1,16 @@
-//import PropTypes from 'prop-types'
 import React, { Component } from 'react';
+import { getPosts, votePost, deletePost, setPostSort } from '../actions/';
+import { Col, Row } from 'react-bootstrap'
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import NewPost from './NewPost.js'
 import EditPost from './EditPost.js'
-import { getPosts, votePost, deletePost, setPostSort } from '../actions/';
-import { connect } from 'react-redux';
-import { Col, Row } from 'react-bootstrap'
-import { Link } from 'react-router-dom';
 
 class Posts extends Component {
   state = {
       posts: [],
       sort: {}
   }
-
-
 
   getCurrentCategory() {
     if(this.props.match && this.props.match.params){
@@ -28,24 +25,22 @@ class Posts extends Component {
       this.props.getPosts(this.getCurrentCategory());
   }
 
-
   render() {
     const { deletePost, posts, sort, votePost, setPostSort } = this.props
     const sortPosts = () => {
-          switch (sort) {
-            case "byVote" :
-                return posts.sort((a, b) => (b.voteScore-a.voteScore))
-            case "byDate" :
-                return posts.sort((a, b) => (b.timestamp-a.timestamp))
-            default :
-              return posts
+      switch (sort) {
+        case "byVote" :
+            return posts.sort((val1, val2) => (val2.voteScore-val1.voteScore))
+        case "byDate" :
+            return posts.sort((val1, val2) => (val2.timestamp-val1.timestamp))
+        default :
+            return posts
+      }
+    }
 
-          }
-        }
     return (
       <Col sm={9}>
       <Row>
-
         <Col sm={3}>
         <div className="form-inline select-sort">
           <label htmlFor="sortBySelect">SortBy:</label>
@@ -77,7 +72,6 @@ class Posts extends Component {
               <h5><span className="label label-primary">{post.category}</span></h5>
               <span>{post.commentCount}</span>
               <span> comments</span>
-
             </div>
           </div>
           <div className="list-item-body-box">
@@ -87,12 +81,10 @@ class Posts extends Component {
             <div className="list-item-body-author">
               <span className="glyphicon glyphicon-time"></span><span className="list-item-body-author-text"> Post by {post.author} at {new Date(post.timestamp).toLocaleString()}</span>
             </div>
-
           </div>
           <div className="fixedContainerDelete-Detail">
               <div className="delete-icon icon" onClick={() => deletePost(post.id)}></div>
           </div>
-
           <div className="fixedContainer-Detail">
               <EditPost post={post}/>
           </div>
@@ -112,10 +104,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-        getPosts: (category) => dispatch(getPosts(category)),
-        votePost: (postId, vote) => dispatch(votePost(postId, vote)),
-        setPostSort: (orderBy) => dispatch(setPostSort(orderBy)),
-        deletePost: (id) => dispatch(deletePost(id))
+        getPosts:    (category)     => dispatch(getPosts(category)),
+        votePost:    (postId, vote) => dispatch(votePost(postId, vote)),
+        setPostSort: (orderBy)      => dispatch(setPostSort(orderBy)),
+        deletePost:  (id)           => dispatch(deletePost(id))
   }
 }
 

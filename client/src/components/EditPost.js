@@ -1,11 +1,10 @@
-//import PropTypes from 'prop-types'
 import React, { Component } from 'react';
+import { Field, reduxForm, reset } from 'redux-form';
+import { customSmallStyleModal } from '../style'
+import { FormGroup } from 'react-bootstrap'
 import { editPost } from '../actions/';
 import { connect } from 'react-redux';
-import { Field, reduxForm, reset } from 'redux-form';
-import { FormGroup } from 'react-bootstrap'
 import Modal from 'react-modal'
-import { customSmallStyleModal } from '../style'
 
 const validate = values => {
 
@@ -31,61 +30,56 @@ const validate = values => {
 }
 
 class EditPost extends Component {
-  state = {
-    editPostModal: false
-  }
-
+    state = {
+      editPostModal: false
+    }
+    closeEditPostModal = () => this.setState(() => ({ editPostModal: false }))
     openEditPostModal = () => {
       this.props.initialize(this.props.post);
       this.setState(() => ({ editPostModal: true }))
     }
-    closeEditPostModal = () => this.setState(() => ({ editPostModal: false }))
-
-    componentWillMount() {
-        // this.props.getCategories();
-    }
 
     editPostForm = (post) => {
-        this.props.editPost(post)
-        this.props.resetPost()
-        this.closeEditPostModal()
+      this.props.editPost(post)
+      this.props.resetPost()
+      this.closeEditPostModal()
+    }
+
+    renderInput(values) {
+      const { meta: { touched, error, pristine } } = values;
+      let className = null;
+      if(touched && error){
+          className = 'has-error';
+      } else if(!pristine){
+          className = "has-success"
       }
 
-      renderInput(values) {
-          const { meta: { touched, error, pristine } } = values;
-          let className = null;
-          if(touched && error){
-              className = 'has-error';
-          } else if(!pristine){
-              className = "has-success"
-          }
+      return (
+          <FormGroup className={className}>
+            <label>{values.label}</label>
+            <input className="form-control" { ...values.input } type="text" placeholder={values.placeholder}/>
+            { error && touched &&
+                <div> <span className="control-label" >Required Field</span></div> }
+          </FormGroup>
+      );
+    }
 
-          return (
-              <FormGroup className={className}>
-                <label>{values.label}</label>
-                <input className="form-control" { ...values.input } type="text" placeholder={values.placeholder}/>
-                { error && touched &&
-                    <div> <span className="control-label" >Required Field</span></div> }
-              </FormGroup>
-          );
-      }
+    render() {
+      const { editPostModal } = this.state
+      const { handleSubmit } = this.props
 
-  render() {
-    const { editPostModal } = this.state
-    const { handleSubmit } = this.props
-
-    Modal.setAppElement('body')
-    return (
-     <div>
-        <Modal
-            overlayClassName='overlay'
-            isOpen={editPostModal}
-            style={customSmallStyleModal}
-            onRequestClose={this.closeEditPostModal}
-            contentLabel='Modal'
+      Modal.setAppElement('body')
+      return (
+        <div>
+          <Modal
+              overlayClassName='overlay'
+              isOpen={editPostModal}
+              style={customSmallStyleModal}
+              onRequestClose={this.closeEditPostModal}
+              contentLabel='Modal'
             >
-            <h4>Edit Post </h4>
-             <form id="postForm" onSubmit={handleSubmit(this.editPostForm.bind(this))}>
+              <h4>Edit Post </h4>
+              <form id="postForm" onSubmit={handleSubmit(this.editPostForm.bind(this))}>
                 <Field
                       label="Title:"
                       name="title"
@@ -102,13 +96,13 @@ class EditPost extends Component {
                   <button className='btn btn-danger' onClick={this.closeEditPostModal}>Close</button>
                   <button type="submit" className="btn btn-success button-add-modal-left">Save</button>
                 </div>
-            </form>
-        </Modal>
-        <div className="edit-icon icon" onClick={this.openEditPostModal}></div>
-    </div>
-    )
-  }
-}
+              </form>
+          </Modal>
+          <div className="edit-icon icon" onClick={this.openEditPostModal}></div>
+        </div>
+      )
+    }
+ }
 
 const mapStateToProps = (state, single) => {
     return { }
@@ -116,7 +110,7 @@ const mapStateToProps = (state, single) => {
 
 const mapDispatchToProps = (dispatch) => {
     return { editPost:    (post)     => dispatch(editPost(post)),
-             resetPost:     ()         => dispatch(reset('editPostForm'))
+             resetPost:   ()         => dispatch(reset('editPostForm'))
            }
 }
 

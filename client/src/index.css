@@ -3,7 +3,7 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
-
+/* App section */
 .App {
   text-align: left;
   background-color: #f1f1f1;
@@ -30,16 +30,13 @@ body {
   font-size: large;
 }
 
+/* Button section */
 .button-add-post {
   text-align: right;
   height: 40px;
   padding-top: 5px;
 }
 
-.categories-box {
-  text-align: center;
-  padding-top: 10px;
-}
 .button-add-comment {
   text-align: right;
   padding-bottom: 10px
@@ -59,20 +56,24 @@ body {
   display: inline-block;
 }
 
+.categories-box {
+  text-align: center;
+  padding-top: 10px;
+}
+
 .select-sort {
   margin-top: 5px;
   text-align: left;
 }
- .container-fluid {
-   width: 80%;
- }
- .icon {
+
+/* Icon section */
+.icon {
    background-position: center;
    background-repeat: no-repeat;
    font-size: 0;
    height: 30px;
    width: 50px;
- }
+}
 
  .edit-icon {
    background-image: url('./icons/edit.png');
@@ -82,23 +83,9 @@ body {
    background-image: url('./icons/delete.png');
  }
 
- .list-item-box {
- background-color: #fff;
-   padding: 10px;
-   margin-bottom: 10px;
-   position: relative;
- }
-
- .list-item-box-comments {
-  background-color: #fff;
-    padding-left: 10px;
-    position: relative;
-  }
-
- .list-item-body-box {
-   padding-left: 10px;
-   text-align: left;
-   margin-left: 20px;
+/* Container section */
+ .container-fluid {
+   width: 80%;
  }
 
  .fixedContainerDelete {
@@ -127,6 +114,26 @@ body {
      cursor: pointer;
    bottom: 10px;
    right: 0px;
+ }
+
+/* List and Main section */
+ .list-item-box {
+ background-color: #fff;
+   padding: 10px;
+   margin-bottom: 10px;
+   position: relative;
+ }
+
+ .list-item-box-comments {
+  background-color: #fff;
+    padding-left: 10px;
+    position: relative;
+  }
+
+ .list-item-body-box {
+   padding-left: 10px;
+   text-align: left;
+   margin-left: 20px;
  }
 
  .list-item-body-summary {
@@ -234,25 +241,21 @@ body {
   bottom: 10px;
 }
 
-   /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
-   .row.content {height: 1500px}
+.row.content {height: 1500px}
 
-   /* Set gray background color and 100% height */
+.sidenav {
+   background-color: #fff;
+   height: auto;
+   margin-top: 10px;
+}
+
+ @media screen and (max-width: 767px) {
    .sidenav {
-     background-color: #fff;
      height: auto;
-     margin-top: 10px;
+     padding: 15px;
    }
-
-
-   /* On small screens, set height to 'auto' for sidenav and grid */
-   @media screen and (max-width: 767px) {
-     .sidenav {
-       height: auto;
-       padding: 15px;
-     }
-     .row.content {height: 1500px;}
-   .container-fluid {
-    width: 100%;
-   }
+   .row.content {height: 1500px;}
+ .container-fluid {
+  width: 100%;
  }
+}

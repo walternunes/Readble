@@ -1,12 +1,11 @@
-//import PropTypes from 'prop-types'
 import React, { Component } from 'react';
 import { getCategories, createPost} from '../actions/';
-import { connect } from 'react-redux';
 import { Field, reduxForm, reset } from 'redux-form';
+import { customLargeStyleModal } from '../style'
 import { FormGroup } from 'react-bootstrap'
+import { connect } from 'react-redux';
 import shortid from 'shortid'
 import Modal from 'react-modal'
-import { customLargeStyleModal } from '../style'
 
 const validate = values => {
 
@@ -32,9 +31,9 @@ const validate = values => {
 }
 
 class NewPost extends Component {
-  state = {
-    newPostModal: false
-  }
+    state = {
+      newPostModal: false
+    }
 
     openNewPostModal = () => this.setState(() => ({ newPostModal: true }))
     closeNewPostModal = () => this.setState(() => ({ newPostModal: false }))
@@ -54,29 +53,29 @@ class NewPost extends Component {
           timestamp: Date.now()
         }
         this.props.createPost(newPost)
-
         this.props.resetPost()
         this.closeNewPostModal()
       }
 
-      renderInput(values) {
-          const { meta: { touched, error, pristine } } = values;
-          let className = null;
-          if(touched && error){
-              className = 'has-error';
-          } else if(!pristine){
-              className = "has-success"
-          }
+    renderInput(values) {
+        const { meta: { touched, error, pristine } } = values;
+        let className = null;
 
-          return (
-              <FormGroup className={className}>
-                <label>{values.label}</label>
-                <input className="form-control" { ...values.input } type="text" placeholder={values.placeholder}/>
-                { error && touched &&
-                    <div> <span className="control-label" >Required Field</span></div> }
-              </FormGroup>
-          );
-      }
+        if(touched && error) {
+            className = 'has-error';
+        } else if(!pristine){
+            className = "has-success"
+        }
+
+        return (
+            <FormGroup className={className}>
+              <label>{values.label}</label>
+              <input className="form-control" { ...values.input } type="text" placeholder={values.placeholder}/>
+              { error && touched &&
+                  <div> <span className="control-label" >Required Field</span></div> }
+            </FormGroup>
+        );
+    }
 
 
     renderSelect(values) {
@@ -87,6 +86,7 @@ class NewPost extends Component {
         } else if(!pristine){
             className = "has-success"
         }
+
         return (
             <FormGroup className={className}>
               <label>{values.label}</label>
@@ -154,8 +154,6 @@ class NewPost extends Component {
                 </div>
             </form>
         </Modal>
-
-
         <div className='button-add-post'>
           <button onClick={this.openNewPostModal} className="btn btn-primary">Add Post</button>
         </div>

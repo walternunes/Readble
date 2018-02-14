@@ -1,13 +1,11 @@
-//import PropTypes from 'prop-types'
 import React, { Component } from 'react';
+import { Field, reduxForm, reset } from 'redux-form';
+import { customSmallStyleModal } from '../style'
+import { Col, Row, FormGroup } from 'react-bootstrap'
 import { createComment} from '../actions/';
 import { connect } from 'react-redux';
-import { Field, reduxForm, reset } from 'redux-form';
-import { FormGroup } from 'react-bootstrap'
 import shortid from 'shortid'
 import Modal from 'react-modal'
-import { Col, Row } from 'react-bootstrap'
-import { customSmallStyleModal } from '../style'
 
 const validate = values => {
 
@@ -25,9 +23,9 @@ const validate = values => {
 }
 
 class NewComment extends Component {
-  state = {
-    newCommentModal: false
-  }
+    state = {
+      newCommentModal: false
+    }
 
     openNewCommentModal = () => this.setState(() => ({ newCommentModal: true }))
     closeNewCommentModal = () => this.setState(() => ({ newCommentModal: false }))
@@ -44,7 +42,6 @@ class NewComment extends Component {
           timestamp: Date.now()
         }
         this.props.createComment(newComment)
-
         this.props.resetComment()
         this.closeNewCommentModal()
       }
@@ -52,7 +49,8 @@ class NewComment extends Component {
       renderInput(values) {
           const { meta: { touched, error, pristine } } = values;
           let className = null;
-          if(touched && error){
+
+          if(touched && error) {
               className = 'has-error';
           } else if(!pristine){
               className = "has-success"
@@ -74,15 +72,15 @@ class NewComment extends Component {
 
     Modal.setAppElement('body')
     return (
-     <div>
+      <div>
         <Modal
-            overlayClassName='overlay'
-            isOpen={newCommentModal}
-            style={customSmallStyleModal}
-            onRequestClose={this.closeNewCommentModal}
-            contentLabel='Modal'
-            >
-            <h4>New Comment </h4>
+          overlayClassName='overlay'
+          isOpen={newCommentModal}
+          style={customSmallStyleModal}
+          onRequestClose={this.closeNewCommentModal}
+          contentLabel='Modal'
+          >
+             <h4>New Comment </h4>
              <form id="commentForm" onSubmit={handleSubmit(this.commentForm.bind(this))}>
                 <Field
                       label="Description:"
@@ -102,8 +100,6 @@ class NewComment extends Component {
                 </div>
             </form>
         </Modal>
-
-
         <Row>
           <Col sm={6} >
             <h4> Comments </h4>
@@ -112,7 +108,7 @@ class NewComment extends Component {
             <button onClick={this.openNewCommentModal} className="btn btn-primary">Add Comment</button>
           </Col>
         </Row>
-    </div>
+      </div>
     )
   }
 }
@@ -122,7 +118,7 @@ const mapStateToProps = (state) => {
   }
 
 const mapDispatchToProps = (dispatch) => {
-    return { createComment:    (comment)     => dispatch(createComment(comment)),
+    return { createComment:    (comment)  => dispatch(createComment(comment)),
              resetComment:     ()         => dispatch(reset('newCommentForm'))
            }
 }

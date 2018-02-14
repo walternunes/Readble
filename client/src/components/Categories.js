@@ -1,9 +1,8 @@
-//import PropTypes from 'prop-types'
 import React, { Component } from 'react';
+import { Col, ListGroupItem, ListGroup } from 'react-bootstrap'
 import { getCategories, getPosts } from '../actions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
-import { Col, ListGroupItem, ListGroup } from 'react-bootstrap'
 
 class Categories extends Component {
 
@@ -17,13 +16,13 @@ class Categories extends Component {
       <Col sm={3} className='categories-box'>
         <h4>Categories</h4>
         <ListGroup >
-          {categories.length > 0 && categories.map((category, index) => (
-              <ListGroupItem key={index}>
-                  <Link to={category.path === 'all' ? '/' : `/${category.path}`} onClick={() => getPosts(category.path)}>
-                    {category.name}
-                  </Link>
-              </ListGroupItem>
-          ))}
+        {categories.length > 0 && categories.map((category, index) => (
+          <ListGroupItem key={index}>
+            <Link to={category.path === 'all' ? '/' : `/${category.path}`} onClick={() => getPosts(category.path)}>
+              {category.name}
+            </Link>
+          </ListGroupItem>
+        ))}
         </ListGroup>
       </Col>
     )
@@ -31,16 +30,14 @@ class Categories extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {
-    categories: state.categories
-  }
+  return { categories: state.categories }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
         getCategories: (category) => dispatch(getCategories()),
-        getPosts: (category) => dispatch(getPosts(category))
+        getPosts:      (category) => dispatch(getPosts(category))
   }
 }
 
-export default connect(mapStateToProps , mapDispatchToProps)(Categories);
+export default connect(mapStateToProps, mapDispatchToProps)(Categories);
