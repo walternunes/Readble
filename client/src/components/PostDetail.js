@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import { getPost, votePost, deletePost } from '../actions/';
 import { connect } from 'react-redux';
-import { Redirect, Link } from 'react-router-dom'
 import { Col, Row, Button } from 'react-bootstrap'
 import NewPost from './NewPost.js'
 import EditPost from './EditPost.js'
@@ -56,7 +55,7 @@ class PostDetail extends Component {
                 <span>{post.title} </span>
               </div>
               <div className="list-item-body-author">
-                <span className="glyphicon glyphicon-time"></span><span className="list-item-body-author-text"> Post by {post.author} at {new Date(1467166872634).toLocaleString()} </span>
+                <span className="glyphicon glyphicon-time"></span><span className="list-item-body-author-text"> Post by {post.author} at {new Date(post.timestamp).toLocaleString()} </span>
               </div>
               <div className="list-item-body-description">
                 <span className="list-item-body-description-text">{post.body}</span>

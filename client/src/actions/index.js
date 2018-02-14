@@ -12,6 +12,8 @@ export const VOTE_COMMENT = 'vote_comment';
 export const DELETE_COMMENT = 'delete_comment';
 export const CREATE_COMMENT = 'create_comment';
 export const EDIT_COMMENT = 'edit_comment';
+export const ADD_COMMENT = 'add_comment'
+export const SUB_COMMENT = 'sub_comment'
 export const SORT_BY = 'sort_by'
 
 const API_URL = "http://localhost:3001/"
@@ -111,7 +113,8 @@ export function createComment(values) {
   }
   return dispatch => {
       axios.post(`${API_URL}comments/`, data)
-          .then(response => { dispatch({ type: CREATE_COMMENT, comments: response.data })});
+          .then(response =>  dispatch({ type: CREATE_COMMENT, comments: response.data }))
+          .then(() => dispatch(addCountComment(parentId)));
   }
 }
 
@@ -119,14 +122,14 @@ export function editComment(values) {
     return dispatch => {
         axios.put(`${API_URL}comments/${values.id}`, values)
             .then(response => { dispatch({ type: EDIT_COMMENT, comments: response.data })});
-
     }
 }
 
-export function deleteComment(id) {
+export function deleteComment(id, parentId) {
     return dispatch => {
         axios.delete(`${API_URL}comments/${id}`)
-            .then(response => { dispatch({type: DELETE_COMMENT, comments: response.data})});
+            .then(response => dispatch({type: DELETE_COMMENT, comments: response.data}))
+            .then(() => dispatch(subCountComment(parentId)));
     }
 }
 
@@ -135,6 +138,14 @@ export function voteComment(commentId, vote) {
       axios.post(`${API_URL}comments/${commentId}`, { option: vote })
           .then(response => dispatch({ type: VOTE_COMMENT, comments: response.data }))
   }
+}
+
+export const addCountComment = (id) => {
+  return { type: ADD_COMMENT, id }
+}
+
+export const subCountComment = (id) => {
+  return { type: SUB_COMMENT, id }
 }
 
 /* Sort actions */

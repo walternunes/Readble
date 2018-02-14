@@ -47,7 +47,7 @@ class PostDetail extends Component {
                 </div>
               </div>
               <div className="fixedContainerDelete">
-                <div className="delete-icon icon" onClick={() => deleteComment(comment.id)}></div>
+                <div className="delete-icon icon" onClick={() => deleteComment(comment.id, comment.parentId)}></div>
               </div>
               <div className="fixedContainer">
                 <EditComment comment={comment}/>
@@ -68,7 +68,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
         voteComment:   (commentId, vote) => dispatch(voteComment(commentId, vote)),
-        deleteComment: (id)              => dispatch(deleteComment(id)),
+        deleteComment: (id, parentId)    => dispatch(deleteComment(id, parentId)),
         getComments:   (id)              => dispatch(getComments(id))
   }
 }
