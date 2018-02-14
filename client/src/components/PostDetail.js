@@ -2,8 +2,8 @@
 import React, { Component } from 'react';
 import { getPost, votePost, deletePost } from '../actions/';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom'
-import { Col, Row } from 'react-bootstrap'
+import { Redirect, Link } from 'react-router-dom'
+import { Col, Row, Button } from 'react-bootstrap'
 import NewPost from './NewPost.js'
 import EditPost from './EditPost.js'
 
@@ -21,8 +21,16 @@ class PostDetail extends Component {
     const post = posts[0] || {}
     return (
       <Col sm={12}>
-        <NewPost/>
-
+        <Row>
+          <Col sm={3}>
+          <div className="form-inline select-sort">
+            <Button onClick={()=> this.props.history.push('/') } className="btn btn-info">Back</Button>
+          </div>
+          </Col>
+          <Col sm={9}>
+            <NewPost/>
+          </Col>
+        </Row>
         {post &&
           <Row className="list-item-box" >
             <div className="list-item-vote-box">
